@@ -62,8 +62,10 @@ public class ConsultaPrueba {
                      // Supongamos que la tabla tiene columnas: id, nombre, edad
                      int id = resultado.getInt("PersonaID");
                      String nombre = resultado.getString("Nombre");
+                     String no = resultado.getString("NoControl");
+                
                      
-                     System.out.println("ID: " + id + ", Nombre: " + nombre);
+                     System.out.println("ID: " + id + ", Nombre: " + nombre + ", Número de control: " + no);
                  }
                  
                  // Cerrar la conexión
