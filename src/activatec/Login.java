@@ -8,8 +8,13 @@ import CodigosPersonalizados.*;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,12 +25,30 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    int cont=0;
     public Login() {
         initComponents();
+        lblIngresar.addMouseListener(new Interna());
         barraArriba1.setParentFrame(this);
         PanelRedondo panel = new PanelRedondo(20); // Radio de 20 píxeles para los bordes
         panel.setBackground(Color.LIGHT_GRAY); // Color de fondo del panel
-        
+        txtPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                boolean d = (c>='0' && c<='9');
+                if(!d || cont==4){
+                e.consume();
+                }else{
+                cont++;
+                }
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
         txtNc.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -38,6 +61,34 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    class Interna implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        String s = txtNc.getText();
+        if(s.charAt(0)=='2'){
+        showMessageDialog(null,"ES ESTUDIANTE");
+        }else{
+        if(s.charAt(0)=='3'){
+        showMessageDialog(null,"ES INSTRUCTOR");
+        }else{
+         if(s.charAt(0)=='4'){
+        showMessageDialog(null,"ES ADMINSTRATIVO");
+        }else{
+        showMessageDialog(null,"NUMERO DE CONTROL INCORRECTO");
+        }
+        }
+        }
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {}
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}}
     
     
 
@@ -57,7 +108,7 @@ public class Login extends javax.swing.JFrame {
         NoCtrl = new javax.swing.JLabel();
         txtNc = new javax.swing.JTextField();
         jspNc = new javax.swing.JSeparator();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jspNip = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         iniSes = new javax.swing.JLabel();
@@ -97,7 +148,6 @@ public class Login extends javax.swing.JFrame {
         contenedorBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
         NoCtrl.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
-        NoCtrl.setForeground(new java.awt.Color(0, 0, 0));
         NoCtrl.setText("No.Control:");
 
         txtNc.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -111,20 +161,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setText("HOLA");
-        jPasswordField1.setBorder(null);
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPassword.setText("HOLA");
+        txtPassword.setBorder(null);
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("NIP:");
 
         iniSes.setFont(new java.awt.Font("Roboto Black", 0, 28)); // NOI18N
-        iniSes.setForeground(new java.awt.Color(0, 0, 0));
         iniSes.setText("Iniciar Sesión");
 
         OlvNip.setFont(new java.awt.Font("Roboto Light", 3, 14)); // NOI18N
-        OlvNip.setForeground(new java.awt.Color(0, 0, 0));
         OlvNip.setText("¿Olvidaste tu NIP?");
         OlvNip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -186,7 +233,7 @@ public class Login extends javax.swing.JFrame {
                                     .addGroup(contenedorBlancoLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(22, 22, 22)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(contenedorBlancoLayout.createSequentialGroup()
                                         .addGap(70, 70, 70)
                                         .addComponent(jspNip, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -214,7 +261,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(contenedorBlancoLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4)
                 .addComponent(jspNip, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -297,12 +344,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel fondoGris;
     private javax.swing.JLabel iniSes;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPanel jpnlIngresar;
     private javax.swing.JSeparator jspNc;
     private javax.swing.JSeparator jspNip;
     private javax.swing.JLabel lblIngresar;
     private javax.swing.JLabel tigre;
     private javax.swing.JTextField txtNc;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
