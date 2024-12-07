@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,24 +83,45 @@ Agregar.addMouseListener(new MouseAdapter() {
 
     }
     
-    class Interna implements ActionListener{
+    class Interna implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String nombre=txtNombre.getText(),desc=TxtDescripcion.getText();
-            String tC = CmbCreditos.getSelectedItem().toString();
-            String C[] = tC.split("-");
-            String nc = C[0];
-            try {
-                stm = con.createStatement();
-                String query = "INSERT INTO ActividadExtraescolar (Nombre,Descripcion,CreditoID) VALUES "
-                    + "('"+nombre+"','"+desc+"',"+nc+")";
-                System.out.println(query);
-            } catch (SQLException ex) {
-                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String nombre = txtNombre.getText();
+        String desc = TxtDescripcion.getText();
+        String tC = CmbCreditos.getSelectedItem().toString();
+        String[] C = tC.split("-");
+        String nc = C[0]; // CreditoID
+
+        PreparedStatement ps = null;
+        try {
+            String query = "INSERT INTO ActividadExtraescolar (Nombre, Descripcion, CreditoID) VALUES (?, ?, ?)";
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, nombre); 
+            ps.setString(2, desc);   
+            ps.setInt(3, Integer.parseInt(nc));
+
+            int filasInsertadas = ps.executeUpdate();
+            if (filasInsertadas > 0) {
+                System.out.println("Registro insertado correctamente.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException closeEx) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, closeEx);
+                }
             }
         }
     }
+}
+
+
     
     
     public void llenarTipoCredito(){
