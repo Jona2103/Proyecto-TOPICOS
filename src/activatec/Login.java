@@ -75,43 +75,56 @@ public class Login extends javax.swing.JFrame {
         
     }
     
-    class Interna implements MouseListener{
+    class Interna implements MouseListener {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            String s = txtNc.getText();
-            String p = txtPassword.getText();
-            
-             if (s.isEmpty() || p.isEmpty()) {
-                 System.out.println("Por favor, ingresa un nombre de usuario y una contraseña.");
-             return;
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        String s = txtNc.getText();  // Número de control
+        String p = txtPassword.getText();  // Contraseña
+        
+        // Verificar si los campos están vacíos
+        if (s.isEmpty() || p.isEmpty()) {
+            System.out.println("Por favor, ingresa un nombre de usuario y una contraseña.");
+            return;  // Salir si alguno de los campos está vacío
         }
-             try {
-    
-        stm = con.createStatement();
-        String query =  "SELECT * FROM Usuario WHERE NombreUsuario = '"+s+"' AND Contraseña ='"+p+"'";
-         ResultSet r = stm.executeQuery(query);
-        if (r.next() && s.charAt(0)=='2') {
-            showMessageDialog(null,"Correcto, es estudiante");
-        } else {
-            System.out.println("Usuario o contraseña incorrectos");
+
+        try {
+            // Ejecutar la consulta para verificar las credenciales
+            stm = con.createStatement();
+            String query = "SELECT * FROM Usuario WHERE NombreUsuario = '" + s + "' AND Contraseña = '" + p + "'";
+            ResultSet r = stm.executeQuery(query);
+
+            // Comprobar si se ha encontrado un usuario y si el número de control es de un estudiante (comienza con '2')
+            if (r.next() && s.charAt(0) == '2') {
+                showMessageDialog(null, "Correcto, es estudiante");
+
+                // Aquí cerramos la ventana de login
+                dispose();  // Cierra la ventana de Login
+
+                // Crear y abrir la ventana de Inicio
+                Inicio inicioFrame = new Inicio();  // Crea la nueva ventana de Inicio
+                inicioFrame.setVisible(true);  // Muestra la ventana de Inicio
+
+            } else {
+                System.out.println("Usuario o contraseña incorrectos");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (SQLException ex) {
-        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
     }
-        }
 
-        @Override
-        public void mousePressed(MouseEvent e) {}
+    @Override
+    public void mousePressed(MouseEvent e) {}
 
-        @Override
-        public void mouseReleased(MouseEvent e) {}
+    @Override
+    public void mouseReleased(MouseEvent e) {}
 
-        @Override
-        public void mouseEntered(MouseEvent e) {}
-        @Override
-        public void mouseExited(MouseEvent e) {}
-    }
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+}
     
     
 
