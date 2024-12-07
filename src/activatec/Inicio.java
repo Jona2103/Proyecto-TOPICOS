@@ -4,6 +4,10 @@
  */
 package activatec;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author Jonathan Viera
@@ -15,6 +19,26 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+    }
+    
+    class Interna implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+           
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {}
+
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
     }
 
     /**
@@ -35,9 +59,10 @@ public class Inicio extends javax.swing.JFrame {
         lblMisActividades = new javax.swing.JLabel();
         lblNovedades = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnMax = new javax.swing.JLabel();
+        btnMin = new javax.swing.JLabel();
+        btnClose = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,13 +134,40 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(245, 245, 245));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+        btnMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
+        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
 
-        jLabel5.setText("Activate");
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        jLabel5.setText("ActivaTec");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addGap(18, 18, 18)
+                .addComponent(btnMin)
+                .addGap(18, 18, 18)
+                .addComponent(btnMax)
+                .addGap(514, 514, 514)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnClose)
+                .addComponent(btnMin)
+                .addComponent(btnMax))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,28 +175,15 @@ public class Inicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(366, 366, 366)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel5))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(645, Short.MAX_VALUE))
@@ -200,15 +239,16 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnClose;
+    private javax.swing.JLabel btnMax;
+    private javax.swing.JLabel btnMin;
     private javax.swing.JLabel flechaPaAbajo;
     private javax.swing.JLabel iconBuscar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblMisActividades;
     private javax.swing.JLabel lblNovedades;
