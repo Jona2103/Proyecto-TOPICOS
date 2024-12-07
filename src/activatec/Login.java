@@ -154,6 +154,7 @@ public class Login extends javax.swing.JFrame {
         jpnlIngresar = new PanelRedondo(40);
         lblIngresar = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        barraArriba2 = new Componentes.BarraArriba();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
@@ -289,14 +290,19 @@ public class Login extends javax.swing.JFrame {
             .addGroup(fondoGrisLayout.createSequentialGroup()
                 .addGap(364, 364, 364)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoGrisLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(barraArriba2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fondoGrisLayout.setVerticalGroup(
             fondoGrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoGrisLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap()
+                .addComponent(barraArriba2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         getContentPane().add(fondoGris, java.awt.BorderLayout.CENTER);
@@ -347,6 +353,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NoCtrl;
     private javax.swing.JLabel OlvNip;
+    private Componentes.BarraArriba barraArriba2;
     private javax.swing.JPanel contenedorBlanco;
     private javax.swing.JPanel fondoGris;
     private javax.swing.JLabel iniSes;
