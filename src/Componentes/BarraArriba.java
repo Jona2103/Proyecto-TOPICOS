@@ -93,11 +93,11 @@ public class BarraArriba extends javax.swing.JPanel{
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        panelEkis = new javax.swing.JPanel();
-        lblX = new javax.swing.JLabel();
-        panelMin = new javax.swing.JPanel();
-        lblMin = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btnMax = new javax.swing.JLabel();
+        btnMin = new javax.swing.JLabel();
+        btnClose = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,116 +123,68 @@ public class BarraArriba extends javax.swing.JPanel{
 
         jTextField1.setText("jTextField1");
 
-        setPreferredSize(new java.awt.Dimension(1366, 40));
+        setMaximumSize(new java.awt.Dimension(32767, 20));
+        setPreferredSize(new java.awt.Dimension(1366, 20));
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1366, 41));
-        jPanel1.setLayout(null);
+        jPanel4.setBackground(new java.awt.Color(245, 245, 245));
 
-        lblX.setBackground(new java.awt.Color(51, 255, 102));
-        lblX.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 20)); // NOI18N
-        lblX.setText("X");
-        lblX.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblX.setFocusTraversalPolicyProvider(true);
-        lblX.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblXMouseClicked(evt);
-            }
-        });
+        btnMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
 
-        javax.swing.GroupLayout panelEkisLayout = new javax.swing.GroupLayout(panelEkis);
-        panelEkis.setLayout(panelEkisLayout);
-        panelEkisLayout.setHorizontalGroup(
-            panelEkisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-            .addGroup(panelEkisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelEkisLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblX)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        jLabel5.setText("ActivaTec");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addGap(18, 18, 18)
+                .addComponent(btnMin)
+                .addGap(18, 18, 18)
+                .addComponent(btnMax)
+                .addGap(514, 514, 514)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelEkisLayout.setVerticalGroup(
-            panelEkisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(panelEkisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelEkisLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblX)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnClose)
+                .addComponent(btnMin)
+                .addComponent(btnMax))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-
-        jPanel1.add(panelEkis);
-        panelEkis.setBounds(1330, 0, 40, 50);
-
-        lblMin.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 40)); // NOI18N
-        lblMin.setText("-");
-        lblMin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMinMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelMinLayout = new javax.swing.GroupLayout(panelMin);
-        panelMin.setLayout(panelMinLayout);
-        panelMinLayout.setHorizontalGroup(
-            panelMinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-            .addGroup(panelMinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMinLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblMin)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        panelMinLayout.setVerticalGroup(
-            panelMinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-            .addGroup(panelMinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMinLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblMin)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jPanel1.add(panelMin);
-        panelMin.setBounds(1290, -20, 40, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXMouseClicked
-        if (ventana != null) {
-            ventana.dispose();  // Cerrar el JFrame si se ha establecido
-        }
-    }//GEN-LAST:event_lblXMouseClicked
-
-    private void lblMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinMouseClicked
-        if (ventana != null) {
-            ventana.setState(JFrame.ICONIFIED);  // Minimizar el JFrame si se ha establecido
-        }
-    }//GEN-LAST:event_lblMinMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel btnClose;
+    private javax.swing.JLabel btnMax;
+    private javax.swing.JLabel btnMin;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblMin;
-    private javax.swing.JLabel lblX;
-    private javax.swing.JPanel panelEkis;
-    private javax.swing.JPanel panelMin;
     // End of variables declaration//GEN-END:variables
 
     
