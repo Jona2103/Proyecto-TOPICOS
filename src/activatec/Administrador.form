@@ -50,6 +50,11 @@
                   </Group>
                   <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="menuDesplegable1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -59,7 +64,9 @@
                   <Component id="barraArriba1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace pref="645" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="menuDesplegable1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="518" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,6 +197,21 @@
         </Container>
         <Component class="Componentes.BarraArriba" name="barraArriba1">
         </Component>
+        <Container class="Componentes.MenuDesplegable" name="menuDesplegable1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
