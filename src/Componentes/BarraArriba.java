@@ -7,6 +7,7 @@ package Componentes;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 
 /**
@@ -23,51 +24,44 @@ public class BarraArriba extends javax.swing.JPanel{
     
     public BarraArriba() {
         initComponents();
-        panelEkis.setBackground(new Color(255,102,0));
-        panelMin.setBackground(new Color(255,102,0));
-        lblMin.setBackground(Color.LIGHT_GRAY);
-        lblX.setBackground(Color.LIGHT_GRAY);
+        //ventana = this;
         
-        panelEkis.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                panelEkis.setBackground(Color.RED);
+        lblClose.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ventana.dispose();
             }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panelEkis.setBackground(new Color(255,102,0));
-            }
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
         });
-        lblX.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                panelEkis.setBackground(Color.RED);
+        lblMax.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if ((ventana.getExtendedState() & JFrame.MAXIMIZED_BOTH) == JFrame.MAXIMIZED_BOTH) {
+                    ventana.setExtendedState(JFrame.NORMAL);
+                } else {
+                    ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                }
             }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panelEkis.setBackground(new Color(255,102,0));
-            }
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
         });
-        
-        panelMin.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                panelMin.setBackground(new Color(255,143,0));
+        lblMin.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ventana.setExtendedState(JFrame.ICONIFIED);
             }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panelMin.setBackground(new Color(255,102,0));
-            }
-        });
-        lblMin.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                panelMin.setBackground(new Color(255,143,0));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panelMin.setBackground(new Color(255,102,0));
-            }
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
         });
     }//Constructor
     
@@ -93,10 +87,10 @@ public class BarraArriba extends javax.swing.JPanel{
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        btnMax = new javax.swing.JLabel();
-        btnMin = new javax.swing.JLabel();
-        btnClose = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblMax = new javax.swing.JLabel();
+        lblMin = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -125,66 +119,59 @@ public class BarraArriba extends javax.swing.JPanel{
 
         setMaximumSize(new java.awt.Dimension(32767, 20));
         setPreferredSize(new java.awt.Dimension(1366, 20));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel5.setBackground(new java.awt.Color(245, 245, 245));
 
-        btnMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
+        lblMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
+        lblMax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+        lblMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+        lblMin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+        lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         jLabel5.setText("ActivaTec");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnClose)
+                .addComponent(lblClose)
                 .addGap(18, 18, 18)
-                .addComponent(btnMin)
+                .addComponent(lblMin)
                 .addGap(18, 18, 18)
-                .addComponent(btnMax)
+                .addComponent(lblMax)
                 .addGap(514, 514, 514)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(btnClose)
-                .addComponent(btnMin)
-                .addComponent(btnMax))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblClose)
+                .addComponent(lblMin)
+                .addComponent(lblMax))
             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnClose;
-    private javax.swing.JLabel btnMax;
-    private javax.swing.JLabel btnMin;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblMin;
     // End of variables declaration//GEN-END:variables
 
     
