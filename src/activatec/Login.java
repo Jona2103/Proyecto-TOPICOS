@@ -79,31 +79,26 @@ public class Login extends javax.swing.JFrame {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String s = txtNc.getText();  // Número de control
-        String p = txtPassword.getText();  // Contraseña
+        String s = txtNc.getText(); 
+        String p = txtPassword.getText();  
         
-        // Verificar si los campos están vacíos
         if (s.isEmpty() || p.isEmpty()) {
             System.out.println("Por favor, ingresa un nombre de usuario y una contraseña.");
-            return;  // Salir si alguno de los campos está vacío
+            return;  
         }
 
         try {
-            // Ejecutar la consulta para verificar las credenciales
             stm = con.createStatement();
             String query = "SELECT * FROM Usuario WHERE NombreUsuario = '" + s + "' AND Contraseña = '" + p + "'";
             ResultSet r = stm.executeQuery(query);
 
-            // Comprobar si se ha encontrado un usuario y si el número de control es de un estudiante (comienza con '2')
             if (r.next() && s.charAt(0) == '2') {
                 showMessageDialog(null, "Correcto, es estudiante");
 
-                // Aquí cerramos la ventana de login
-                dispose();  // Cierra la ventana de Login
+                dispose();  
 
-                // Crear y abrir la ventana de Inicio
-                Inicio inicioFrame = new Inicio();  // Crea la nueva ventana de Inicio
-                inicioFrame.setVisible(true);  // Muestra la ventana de Inicio
+                Inicio inicioFrame = new Inicio();  
+                inicioFrame.setVisible(true);  
 
             } else {
                 System.out.println("Usuario o contraseña incorrectos");
