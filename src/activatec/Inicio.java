@@ -24,14 +24,11 @@ public class Inicio extends javax.swing.JFrame {
      */
     
     private JFrame ventana;
-    private boolean isFull = false;
-    private Dimension normal;
 
     
     public Inicio() {
         initComponents();
         ventana = this;
-        normal = getSize();
         
         lblClose.addMouseListener(new MouseListener() {
             @Override
