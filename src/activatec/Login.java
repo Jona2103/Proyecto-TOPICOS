@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 
@@ -28,8 +29,8 @@ public class Login extends javax.swing.JFrame {
     int cont=0;
     public Login() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblIngresar.addMouseListener(new Interna());
-        barraArriba1.setParentFrame(this);
         PanelRedondo panel = new PanelRedondo(20); // Radio de 20 píxeles para los bordes
         panel.setBackground(Color.LIGHT_GRAY); // Color de fondo del panel
         txtPassword.addKeyListener(new KeyListener() {
@@ -60,6 +61,7 @@ public class Login extends javax.swing.JFrame {
                 txtNc.setText("Ingrese su No. Control");
             }
         });
+        
     }
     
     class Interna implements MouseListener{
@@ -106,8 +108,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         fondoGris = new javax.swing.JPanel();
-        barraNaranja = new javax.swing.JPanel();
-        barraArriba1 = new Componentes.BarraArriba();
         contenedorBlanco = new PanelRedondo(100);
         NoCtrl = new javax.swing.JLabel();
         txtNc = new javax.swing.JTextField();
@@ -129,25 +129,6 @@ public class Login extends javax.swing.JFrame {
         fondoGris.setBackground(new java.awt.Color(245, 245, 245));
         fondoGris.setForeground(new java.awt.Color(255, 255, 255));
         fondoGris.setPreferredSize(new java.awt.Dimension(1366, 768));
-
-        barraNaranja.setPreferredSize(new java.awt.Dimension(1366, 37));
-
-        barraArriba1.setForeground(new java.awt.Color(227, 109, 30));
-
-        javax.swing.GroupLayout barraNaranjaLayout = new javax.swing.GroupLayout(barraNaranja);
-        barraNaranja.setLayout(barraNaranjaLayout);
-        barraNaranjaLayout.setHorizontalGroup(
-            barraNaranjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(barraNaranjaLayout.createSequentialGroup()
-                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        barraNaranjaLayout.setVerticalGroup(
-            barraNaranjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(barraNaranjaLayout.createSequentialGroup()
-                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         contenedorBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -279,19 +260,17 @@ public class Login extends javax.swing.JFrame {
         fondoGris.setLayout(fondoGrisLayout);
         fondoGrisLayout.setHorizontalGroup(
             fondoGrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barraNaranja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoGrisLayout.createSequentialGroup()
-                .addGap(365, 365, 365)
+                .addGap(364, 364, 364)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         fondoGrisLayout.setVerticalGroup(
             fondoGrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoGrisLayout.createSequentialGroup()
-                .addComponent(barraNaranja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(57, 57, 57)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         getContentPane().add(fondoGris, java.awt.BorderLayout.CENTER);
@@ -342,8 +321,6 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NoCtrl;
     private javax.swing.JLabel OlvNip;
-    private Componentes.BarraArriba barraArriba1;
-    private javax.swing.JPanel barraNaranja;
     private javax.swing.JPanel contenedorBlanco;
     private javax.swing.JPanel fondoGris;
     private javax.swing.JLabel iniSes;
