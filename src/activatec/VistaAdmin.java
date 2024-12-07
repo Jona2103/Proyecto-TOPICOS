@@ -28,6 +28,7 @@ public class VistaAdmin extends javax.swing.JFrame {
                 // Cambiar la visibilidad del panel cuando se haga clic en el JLabel
                 if (CrearGrupo.isVisible()) {
                     CrearGrupo.setVisible(false);
+                      Añadir.setVisible(false);
                 } else {
                     CrearGrupo.setVisible(true);
                 }
