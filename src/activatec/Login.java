@@ -66,29 +66,33 @@ public class Login extends javax.swing.JFrame {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-        String s = txtNc.getText();
-        if(s.charAt(0)=='2'){
-        showMessageDialog(null,"ES ESTUDIANTE");
-        }else{
-        if(s.charAt(0)=='3'){
-        showMessageDialog(null,"ES INSTRUCTOR");
-        }else{
-         if(s.charAt(0)=='4'){
-        showMessageDialog(null,"ES ADMINSTRATIVO");
-        }else{
-        showMessageDialog(null,"NUMERO DE CONTROL INCORRECTO");
+            String s = txtNc.getText();
+            if (s.charAt(0) == '2') {
+                showMessageDialog(null, "ES ESTUDIANTE");
+            } else {
+                if (s.charAt(0) == '3') {
+                    showMessageDialog(null, "ES INSTRUCTOR");
+                } else {
+                    if (s.charAt(0) == '4') {
+                        showMessageDialog(null, "ES ADMINSTRATIVO");
+                    } else {
+                        showMessageDialog(null, "NUMERO DE CONTROL INCORRECTO");
+                    }
+                }
+            }
         }
-        }
-        }
-        }
+
         @Override
         public void mousePressed(MouseEvent e) {}
+
         @Override
         public void mouseReleased(MouseEvent e) {}
+
         @Override
         public void mouseEntered(MouseEvent e) {}
         @Override
-        public void mouseExited(MouseEvent e) {}}
+        public void mouseExited(MouseEvent e) {}
+    }
     
     
 
