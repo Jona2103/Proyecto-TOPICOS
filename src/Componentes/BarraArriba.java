@@ -145,17 +145,16 @@ public class BarraArriba extends javax.swing.JPanel{
                 .addComponent(lblMin)
                 .addGap(18, 18, 18)
                 .addComponent(lblMax)
-                .addGap(477, 477, 477)
+                .addGap(509, 509, 509)
                 .addComponent(jLabel5)
-                .addContainerGap(691, Short.MAX_VALUE))
+                .addContainerGap(659, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lblClose)
-                .addComponent(lblMin)
-                .addComponent(lblMax))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(lblClose)
+            .addComponent(lblMin)
+            .addComponent(lblMax)
+            .addComponent(jLabel5)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
