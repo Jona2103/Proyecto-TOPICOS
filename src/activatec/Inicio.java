@@ -47,7 +47,11 @@ public class Inicio extends javax.swing.JFrame {
         lblMax.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                validarPantallaComplete();
+                if ((ventana.getExtendedState() & JFrame.MAXIMIZED_BOTH) == JFrame.MAXIMIZED_BOTH) {
+                    ventana.setExtendedState(JFrame.NORMAL);
+                } else {
+                    ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                }
             }
 
             public void mousePressed(MouseEvent e) {}
@@ -68,27 +72,6 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
     
-    // Método para alternar entre pantalla completa y tamaño normal
-    private void validarPantallaComplete() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        
-        if (isFull) {
-            // Si ya está en pantalla completa, restauramos al tamaño original
-            setSize(normal);
-            setLocationRelativeTo(null); // Centra la ventana
-            gd.setFullScreenWindow(null); // Desactiva el modo de pantalla completa
-        } else {
-            // Si no está en pantalla completa, la ponemos a pantalla completa
-            setSize(Toolkit.getDefaultToolkit().getScreenSize());
-            gd.setFullScreenWindow(this); // Activa el modo de pantalla completa
-        }
-
-        isFull = !isFull; // Cambiar el estado
-    }
-    
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
