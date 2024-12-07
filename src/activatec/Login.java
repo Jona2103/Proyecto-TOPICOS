@@ -12,18 +12,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.JTextField;
 
 /**
  *
@@ -53,6 +49,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        barraArriba2.setParentFrame(this);
         Conectar();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblIngresar.addMouseListener(new Interna());
