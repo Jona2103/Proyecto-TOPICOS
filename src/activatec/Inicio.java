@@ -4,8 +4,13 @@
  */
 package activatec;
 
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -17,29 +22,72 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    
+    private JFrame ventana;
+    private boolean isFull = false;
+    private Dimension normal;
+
+    
     public Inicio() {
         initComponents();
+        ventana = this;
+        normal = getSize();
+        
+        lblClose.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ventana.dispose();
+            }
+
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+        });
+        lblMax.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                validarPantallaComplete();
+            }
+
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+        });
+        lblMin.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ventana.setExtendedState(JFrame.ICONIFIED);
+            }
+
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+        });
     }
     
-    class Interna implements MouseListener{
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-           
+    // Método para alternar entre pantalla completa y tamaño normal
+    private void validarPantallaComplete() {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        
+        if (isFull) {
+            // Si ya está en pantalla completa, restauramos al tamaño original
+            setSize(normal);
+            setLocationRelativeTo(null); // Centra la ventana
+            gd.setFullScreenWindow(null); // Desactiva el modo de pantalla completa
+        } else {
+            // Si no está en pantalla completa, la ponemos a pantalla completa
+            setSize(Toolkit.getDefaultToolkit().getScreenSize());
+            gd.setFullScreenWindow(this); // Activa el modo de pantalla completa
         }
 
-        @Override
-        public void mousePressed(MouseEvent e) {}
-
-        @Override
-        public void mouseReleased(MouseEvent e) {}
-
-        @Override
-        public void mouseEntered(MouseEvent e) {}
-        @Override
-        public void mouseExited(MouseEvent e) {}
+        isFull = !isFull; // Cambiar el estado
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,9 +108,9 @@ public class Inicio extends javax.swing.JFrame {
         lblNovedades = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnMax = new javax.swing.JLabel();
-        btnMin = new javax.swing.JLabel();
-        btnClose = new javax.swing.JLabel();
+        lblMax = new javax.swing.JLabel();
+        lblMin = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -136,11 +184,14 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(245, 245, 245));
 
-        btnMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
+        lblMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
+        lblMax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+        lblMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
+        lblMin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
+        lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         jLabel5.setText("ActivaTec");
@@ -151,11 +202,11 @@ public class Inicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnClose)
+                .addComponent(lblClose)
                 .addGap(18, 18, 18)
-                .addComponent(btnMin)
+                .addComponent(lblMin)
                 .addGap(18, 18, 18)
-                .addComponent(btnMax)
+                .addComponent(lblMax)
                 .addGap(514, 514, 514)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -163,9 +214,9 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(btnClose)
-                .addComponent(btnMin)
-                .addComponent(btnMax))
+                .addComponent(lblClose)
+                .addComponent(lblMin)
+                .addComponent(lblMax))
             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
@@ -239,9 +290,6 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnClose;
-    private javax.swing.JLabel btnMax;
-    private javax.swing.JLabel btnMin;
     private javax.swing.JLabel flechaPaAbajo;
     private javax.swing.JLabel iconBuscar;
     private javax.swing.JLabel jLabel3;
@@ -249,7 +297,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblInicio;
+    private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblMin;
     private javax.swing.JLabel lblMisActividades;
     private javax.swing.JLabel lblNovedades;
     private javax.swing.JLabel lblTigre;
