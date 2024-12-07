@@ -5,6 +5,12 @@
 package activatec;
 import CodigosPersonalizados.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -13,6 +19,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
@@ -27,8 +35,25 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     int cont=0;
+    private Connection con;
+    private Statement stm;
+    
+    public void Conectar(){
+        
+        String url = "jdbc:sqlserver://OswaldoDiaz:1433;databaseName=TAP;encrypt=true;trustServerCertificate=true;";
+        
+        try {
+            con = DriverManager.getConnection(url, "UsuarioTAP", "123");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al conectar");
+        }
+        System.out.println("Conexión exitosa");
+    }
+    
     public Login() {
         initComponents();
+        Conectar();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblIngresar.addMouseListener(new Interna());
         PanelRedondo panel = new PanelRedondo(20); // Radio de 20 píxeles para los bordes
@@ -50,17 +75,6 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void keyReleased(KeyEvent e) {}
         });
-        txtNc.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                txtNc.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                txtNc.setText("Ingrese su No. Control");
-            }
-        });
         
     }
     
@@ -69,6 +83,26 @@ public class Login extends javax.swing.JFrame {
         @Override
         public void mouseClicked(MouseEvent e) {
             String s = txtNc.getText();
+            String p = txtPassword.getText();
+            String ss = "";
+            String pp = "";
+            
+            try {
+                stm = con.createStatement();
+                String query = "SELECT * FROM Usuario WHERE NombreUsuario = '"+s+"' AND Contraseña ='"+p+"'";
+                ResultSet r = stm.executeQuery(query);
+                while(r.next()){
+                ss = r.getString("NombreUsuario");
+                pp = r.getString("Contraseña");
+                }
+                System.out.println(query);
+                if(s.equals(ss) && p.equals(pp) && s.charAt(0)=='2'){
+                showMessageDialog(null,"ES ESTUDIANTE");
+            }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (s.charAt(0) == '2') {
                 showMessageDialog(null, "ES ESTUDIANTE");
             } else {
@@ -112,7 +146,6 @@ public class Login extends javax.swing.JFrame {
         NoCtrl = new javax.swing.JLabel();
         txtNc = new javax.swing.JTextField();
         jspNc = new javax.swing.JSeparator();
-        txtPassword = new javax.swing.JPasswordField();
         jspNip = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         iniSes = new javax.swing.JLabel();
@@ -120,6 +153,7 @@ public class Login extends javax.swing.JFrame {
         tigre = new javax.swing.JLabel();
         jpnlIngresar = new PanelRedondo(40);
         lblIngresar = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
@@ -145,10 +179,6 @@ public class Login extends javax.swing.JFrame {
                 txtNcActionPerformed(evt);
             }
         });
-
-        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPassword.setText("HOLA");
-        txtPassword.setBorder(null);
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         jLabel4.setText("NIP:");
@@ -186,6 +216,8 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        txtPassword.setText("jTextField1");
+
         javax.swing.GroupLayout contenedorBlancoLayout = new javax.swing.GroupLayout(contenedorBlanco);
         contenedorBlanco.setLayout(contenedorBlancoLayout);
         contenedorBlancoLayout.setHorizontalGroup(
@@ -201,28 +233,25 @@ public class Login extends javax.swing.JFrame {
                         .addGap(211, 211, 211))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBlancoLayout.createSequentialGroup()
                         .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(OlvNip, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(107, 107, 107))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                                    .addComponent(NoCtrl)
-                                    .addGap(19, 19, 19)
-                                    .addComponent(txtNc, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                                    .addGap(150, 150, 150)
-                                    .addComponent(jspNc, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBlancoLayout.createSequentialGroup()
+                                .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(NoCtrl))
                                 .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(19, 19, 19)
+                                        .addComponent(txtNc, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(jspNip, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(42, 42, 42)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jspNc, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                            .addComponent(txtPassword)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBlancoLayout.createSequentialGroup()
+                                .addComponent(jspNip, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42))
+                            .addGroup(contenedorBlancoLayout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addComponent(OlvNip, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(135, 135, 135))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBlancoLayout.createSequentialGroup()
                         .addComponent(jpnlIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,12 +271,10 @@ public class Login extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jspNc, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(contenedorBlancoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(4, 4, 4)
+                .addGroup(contenedorBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
                 .addComponent(jspNip, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jpnlIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,14 +290,14 @@ public class Login extends javax.swing.JFrame {
             .addGroup(fondoGrisLayout.createSequentialGroup()
                 .addGap(364, 364, 364)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
         fondoGrisLayout.setVerticalGroup(
             fondoGrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoGrisLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(contenedorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         getContentPane().add(fondoGris, java.awt.BorderLayout.CENTER);
@@ -331,6 +358,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblIngresar;
     private javax.swing.JLabel tigre;
     private javax.swing.JTextField txtNc;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
