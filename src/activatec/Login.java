@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.sql.PreparedStatement;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -81,38 +81,24 @@ public class Login extends javax.swing.JFrame {
         public void mouseClicked(MouseEvent e) {
             String s = txtNc.getText();
             String p = txtPassword.getText();
-            String ss = "";
-            String pp = "";
             
-            try {
-                stm = con.createStatement();
-                String query = "SELECT * FROM Usuario WHERE NombreUsuario = '"+s+"' AND Contraseña ='"+p+"'";
-                ResultSet r = stm.executeQuery(query);
-                while(r.next()){
-                ss = r.getString("NombreUsuario");
-                pp = r.getString("Contraseña");
-                }
-                System.out.println(query);
-                if(s.equals(ss) && p.equals(pp) && s.charAt(0)=='2'){
-                showMessageDialog(null,"ES ESTUDIANTE");
-            }
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (s.charAt(0) == '2') {
-                showMessageDialog(null, "ES ESTUDIANTE");
-            } else {
-                if (s.charAt(0) == '3') {
-                    showMessageDialog(null, "ES INSTRUCTOR");
-                } else {
-                    if (s.charAt(0) == '4') {
-                        showMessageDialog(null, "ES ADMINSTRATIVO");
-                    } else {
-                        showMessageDialog(null, "NUMERO DE CONTROL INCORRECTO");
-                    }
-                }
-            }
+             if (s.isEmpty() || p.isEmpty()) {
+                 System.out.println("Por favor, ingresa un nombre de usuario y una contraseña.");
+             return;
+        }
+             try {
+    
+        stm = con.createStatement();
+        String query =  "SELECT * FROM Usuario WHERE NombreUsuario = '"+s+"' AND Contraseña ='"+p+"'";
+         ResultSet r = stm.executeQuery(query);
+        if (r.next() && s.charAt(0)=='2') {
+            showMessageDialog(null,"Correcto, es estudiante");
+        } else {
+            System.out.println("Usuario o contraseña incorrectos");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    }
         }
 
         @Override
@@ -170,7 +156,6 @@ public class Login extends javax.swing.JFrame {
         txtNc.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNc.setForeground(new java.awt.Color(204, 204, 204));
         txtNc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNc.setText("Ingrese su No. Control");
         txtNc.setBorder(null);
         txtNc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +199,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        txtPassword.setText("jTextField1");
+        txtPassword.setBorder(null);
 
         javax.swing.GroupLayout contenedorBlancoLayout = new javax.swing.GroupLayout(contenedorBlanco);
         contenedorBlanco.setLayout(contenedorBlancoLayout);
