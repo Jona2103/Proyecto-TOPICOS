@@ -4,14 +4,7 @@
  */
 package activatec;
 
-import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -28,45 +21,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public Inicio() {
         initComponents();
-        ventana = this;
-        
-        lblClose.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ventana.dispose();
-            }
-
-            public void mousePressed(MouseEvent e) {}
-            public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {}
-            public void mouseExited(MouseEvent e) {}
-        });
-        lblMax.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if ((ventana.getExtendedState() & JFrame.MAXIMIZED_BOTH) == JFrame.MAXIMIZED_BOTH) {
-                    ventana.setExtendedState(JFrame.NORMAL);
-                } else {
-                    ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                }
-            }
-
-            public void mousePressed(MouseEvent e) {}
-            public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {}
-            public void mouseExited(MouseEvent e) {}
-        });
-        lblMin.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ventana.setExtendedState(JFrame.ICONIFIED);
-            }
-
-            public void mousePressed(MouseEvent e) {}
-            public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {}
-            public void mouseExited(MouseEvent e) {}
-        });
+        barraArriba1.setParentFrame(this);
     }
     
     /**
@@ -87,11 +42,7 @@ public class Inicio extends javax.swing.JFrame {
         lblMisActividades = new javax.swing.JLabel();
         lblNovedades = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        lblMax = new javax.swing.JLabel();
-        lblMin = new javax.swing.JLabel();
-        lblClose = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        barraArriba1 = new Componentes.BarraArriba();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,59 +113,22 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jPanel3.setBackground(new java.awt.Color(245, 245, 245));
-
-        lblMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
-        lblMax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lblMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Ama.png"))); // NOI18N
-        lblMin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button red.png"))); // NOI18N
-        lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        jLabel5.setText("ActivaTec");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblClose)
-                .addGap(18, 18, 18)
-                .addComponent(lblMin)
-                .addGap(18, 18, 18)
-                .addComponent(lblMax)
-                .addGap(514, 514, 514)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lblClose)
-                .addComponent(lblMin)
-                .addComponent(lblMax))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 8, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(645, Short.MAX_VALUE))
@@ -270,17 +184,13 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Componentes.BarraArriba barraArriba1;
     private javax.swing.JLabel flechaPaAbajo;
     private javax.swing.JLabel iconBuscar;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblInicio;
-    private javax.swing.JLabel lblMax;
-    private javax.swing.JLabel lblMin;
     private javax.swing.JLabel lblMisActividades;
     private javax.swing.JLabel lblNovedades;
     private javax.swing.JLabel lblTigre;
