@@ -132,7 +132,7 @@ public class BarraArriba extends javax.swing.JPanel{
         lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        jLabel5.setText("ActivaTec");
+        jLabel5.setText("ActivaTec - App");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -145,7 +145,7 @@ public class BarraArriba extends javax.swing.JPanel{
                 .addComponent(lblMin)
                 .addGap(18, 18, 18)
                 .addComponent(lblMax)
-                .addGap(514, 514, 514)
+                .addGap(477, 477, 477)
                 .addComponent(jLabel5)
                 .addContainerGap(691, Short.MAX_VALUE))
         );
