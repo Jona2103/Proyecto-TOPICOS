@@ -40,7 +40,7 @@ public class Inicio1 extends javax.swing.JFrame {
 
         fondo = new javax.swing.JPanel();
         barraArriba1 = new Componentes.BarraArriba();
-        trans = new PanelRedondo(100);
+        no = new PanelRedondo(100);
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new PanelRedondo(100);
         jPanel8 = new PanelRedondo(100);
@@ -67,24 +67,24 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
-        trans.setBackground(new java.awt.Color(255, 255, 255));
-        trans.setMinimumSize(new java.awt.Dimension(1366, 768));
-        trans.setName(""); // NOI18N
-        trans.setPreferredSize(new java.awt.Dimension(1366, 768));
+        no.setBackground(new java.awt.Color(255, 255, 255));
+        no.setMinimumSize(new java.awt.Dimension(1366, 768));
+        no.setName(""); // NOI18N
+        no.setPreferredSize(new java.awt.Dimension(1366, 768));
 
-        javax.swing.GroupLayout transLayout = new javax.swing.GroupLayout(trans);
-        trans.setLayout(transLayout);
-        transLayout.setHorizontalGroup(
-            transLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout noLayout = new javax.swing.GroupLayout(no);
+        no.setLayout(noLayout);
+        noLayout.setHorizontalGroup(
+            noLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1366, Short.MAX_VALUE)
         );
-        transLayout.setVerticalGroup(
-            transLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        noLayout.setVerticalGroup(
+            noLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 768, Short.MAX_VALUE)
         );
 
-        fondo.add(trans);
-        trans.setBounds(950, 140, 260, 280);
+        fondo.add(no);
+        no.setBounds(950, 140, 260, 280);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
         fondo.add(jLabel1);
@@ -259,13 +259,36 @@ public class Inicio1 extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicio1().setVisible(true);
             }
         });
+        
+       /* Thread hiloCarrusel = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(2000);  // Esperar 2 segundos antes de cambiar el panel
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    cambiarPanel();  // Cambiar al siguiente panel
+                }
+            }
+        });
+        hiloCarrusel.start();  
+        */
     }
+    
+    /*private void cambiarPanel() {
+        panelIndex++;
+        if (panelIndex >= 3) {
+            panelIndex = 0;  // Volver al primer panel cuando se llega al último
+        }
+        cardLayout.show(panelContenedor, "Panel " + (panelIndex + 1));
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel IconoFoto;
@@ -280,6 +303,6 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblTigre;
-    private javax.swing.JPanel trans;
+    private javax.swing.JPanel no;
     // End of variables declaration//GEN-END:variables
 }
