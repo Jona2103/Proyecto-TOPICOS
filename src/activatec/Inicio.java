@@ -72,6 +72,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         fondo = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         iconConfig = new javax.swing.JLabel();
         panelAjustes = new PanelRedondo(65);
         salir = new javax.swing.JLabel();
@@ -83,6 +84,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel8 = new PanelRedondo(100);
         jLabel3 = new javax.swing.JLabel();
         jPanel9 = new PanelRedondo(100);
+        jLabel5 = new javax.swing.JLabel();
         lblTigre = new javax.swing.JLabel();
         jPanel11 = new PanelRedondo(100);
         panelCarrusel = new PanelRedondo(100);
@@ -96,7 +98,6 @@ public class Inicio extends javax.swing.JFrame {
         lblNombre2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblNombre1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -108,6 +109,20 @@ public class Inicio extends javax.swing.JFrame {
         fondo.setMaximumSize(new java.awt.Dimension(62, 62));
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        fondo.add(jPanel1);
+        jPanel1.setBounds(620, 290, 100, 100);
 
         iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configNegro.png"))); // NOI18N
         iconConfig.setText("jLabel3");
@@ -195,19 +210,24 @@ public class Inicio extends javax.swing.JFrame {
         jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel9.setPreferredSize(new java.awt.Dimension(62, 64));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tecnmB.png"))); // NOI18N
+        jLabel5.setMinimumSize(new java.awt.Dimension(0, 0));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         fondo.add(jPanel9);
-        jPanel9.setBounds(1260, 330, 62, 64);
+        jPanel9.setBounds(1260, 330, 62, 60);
 
         lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
         fondo.add(lblTigre);
@@ -296,7 +316,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         fondo.add(panelActividades);
-        panelActividades.setBounds(40, 590, 380, 160);
+        panelActividades.setBounds(240, 590, 380, 160);
 
         panelActividades1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -329,7 +349,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         fondo.add(panelActividades1);
-        panelActividades1.setBounds(450, 590, 440, 160);
+        panelActividades1.setBounds(650, 590, 440, 160);
 
         lblNombre1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
@@ -337,11 +357,6 @@ public class Inicio extends javax.swing.JFrame {
         lblNombre1.setText("Avisos");
         fondo.add(lblNombre1);
         lblNombre1.setBounds(160, 60, 140, 30);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tecnologico-Nacional-de-Mexico-r.png"))); // NOI18N
-        jLabel5.setMinimumSize(new java.awt.Dimension(0, 0));
-        fondo.add(jLabel5);
-        jLabel5.setBounds(990, 590, 310, 150);
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -397,6 +412,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
