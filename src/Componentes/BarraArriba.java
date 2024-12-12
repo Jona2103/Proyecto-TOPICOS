@@ -139,13 +139,13 @@ public class BarraArriba extends javax.swing.JPanel{
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(lblClose)
                 .addGap(18, 18, 18)
                 .addComponent(lblMin)
                 .addGap(18, 18, 18)
                 .addComponent(lblMax)
-                .addGap(509, 509, 509)
+                .addGap(497, 497, 497)
                 .addComponent(jLabel5)
                 .addContainerGap(659, Short.MAX_VALUE))
         );

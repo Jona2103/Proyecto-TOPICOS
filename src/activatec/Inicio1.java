@@ -45,17 +45,24 @@ public class Inicio1 extends javax.swing.JFrame {
         jPanel1 = new PanelRedondo(100);
         jPanel8 = new PanelRedondo(100);
         jPanel9 = new PanelRedondo(100);
-        jPanel10 = new javax.swing.JPanel();
         jPanel11 = new PanelRedondo(100);
+        jPanel10 = new PanelRedondo(100);
+        jPanel13 = new PanelRedondo(100);
+        lblTigre = new javax.swing.JLabel();
+        IconoFoto = new PanelRedondo(100);
+        PanelName = new PanelRedondo(20);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
+        setMinimumSize(new java.awt.Dimension(1366, 768));
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fondo.setBackground(new java.awt.Color(245, 245, 245));
         fondo.setToolTipText("");
+        fondo.setMaximumSize(new java.awt.Dimension(62, 62));
+        fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
@@ -69,11 +76,11 @@ public class Inicio1 extends javax.swing.JFrame {
         trans.setLayout(transLayout);
         transLayout.setHorizontalGroup(
             transLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1366, Short.MAX_VALUE)
         );
         transLayout.setVerticalGroup(
             transLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 768, Short.MAX_VALUE)
         );
 
         fondo.add(trans);
@@ -81,7 +88,7 @@ public class Inicio1 extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
         fondo.add(jLabel1);
-        jLabel1.setBounds(330, 100, 500, 500);
+        jLabel1.setBounds(350, 100, 500, 500);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(62, 64));
 
@@ -133,20 +140,6 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel9);
         jPanel9.setBounds(1270, 443, 62, 64);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
-        );
-
-        fondo.add(jPanel10);
-        jPanel10.setBounds(172, 324, 100, 26);
-
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -163,7 +156,77 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel11);
         jPanel11.setBounds(950, 430, 260, 120);
 
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 820));
+        jPanel10.setMinimumSize(new java.awt.Dimension(62, 64));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 62, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+        );
+
+        fondo.add(jPanel10);
+        jPanel10.setBounds(30, 330, 40, 40);
+
+        jPanel13.setMinimumSize(new java.awt.Dimension(62, 64));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        fondo.add(jPanel13);
+        jPanel13.setBounds(30, 280, 40, 40);
+
+        lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
+        fondo.add(lblTigre);
+        lblTigre.setBounds(10, 40, 70, 76);
+
+        IconoFoto.setMinimumSize(new java.awt.Dimension(62, 64));
+
+        javax.swing.GroupLayout IconoFotoLayout = new javax.swing.GroupLayout(IconoFoto);
+        IconoFoto.setLayout(IconoFotoLayout);
+        IconoFotoLayout.setHorizontalGroup(
+            IconoFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        IconoFotoLayout.setVerticalGroup(
+            IconoFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        fondo.add(IconoFoto);
+        IconoFoto.setBounds(1280, 40, 40, 40);
+
+        PanelName.setBackground(new java.awt.Color(255, 255, 255));
+        PanelName.setMinimumSize(new java.awt.Dimension(1366, 768));
+        PanelName.setName(""); // NOI18N
+
+        javax.swing.GroupLayout PanelNameLayout = new javax.swing.GroupLayout(PanelName);
+        PanelName.setLayout(PanelNameLayout);
+        PanelNameLayout.setHorizontalGroup(
+            PanelNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        PanelNameLayout.setVerticalGroup(
+            PanelNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        fondo.add(PanelName);
+        PanelName.setBounds(1150, 40, 120, 40);
+
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,20 +268,18 @@ public class Inicio1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel IconoFoto;
+    private javax.swing.JPanel PanelName;
     private Componentes.BarraArriba barraArriba1;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblTigre;
     private javax.swing.JPanel trans;
     // End of variables declaration//GEN-END:variables
 }
