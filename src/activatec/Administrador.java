@@ -4,7 +4,6 @@
  */
 package activatec;
 
-
 import Componentes.MenuDesplegable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,18 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
  * @author Jonathan Viera
@@ -56,9 +50,21 @@ public class Administrador extends javax.swing.JFrame {
         initComponents();
         Conectar();
         llenarTipoCredito();
+        llenarInstructor();
+        llenarActividad();
+        llenarInstalacion();
         barraArriba1.setParentFrame(this);
         btnAgregaract.addActionListener(new Interna());
         CrearGrupo.setVisible(false);
+        btnGrupo.addActionListener(
+        new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                insertarGrupo();
+            }
+        
+        }
+        );
 Añadir.setVisible(false);
 
 Crear.addMouseListener(new MouseAdapter() {
@@ -120,9 +126,8 @@ Agregar.addMouseListener(new MouseAdapter() {
         }
     }
 }
-
-
     
+        
     
     public void llenarTipoCredito(){
         try {
@@ -133,6 +138,115 @@ Agregar.addMouseListener(new MouseAdapter() {
             while(res.next()){
                 id = res.getInt("CreditoID"); tipo = res.getString("Tipo");
                 CmbCreditos.addItem(id+"-"+tipo);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+ 
+    
+    public void llenarInstructor(){
+        try {
+            stm = con.createStatement();
+            String query = "SELECT * FROM Persona WHERE RolID=3 ";
+            ResultSet res = stm.executeQuery(query);
+            String nam = ""; int id=0;
+            while(res.next()){
+                id = res.getInt("PersonaID"); nam = res.getString("Nombre");
+                cmbInstructor.addItem(id+"-"+nam);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    public void llenarActividad(){
+        try {
+            stm = con.createStatement();
+            String query = "SELECT * FROM ActividadExtraescolar";
+            ResultSet res = stm.executeQuery(query);
+            String nam = ""; int id=0;
+            while(res.next()){
+                nam = res.getString("Nombre"); id = res.getInt("ActividadID");
+                cmbActividad.addItem(id+"-"+nam);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    public void insertarGrupo(){
+        
+        String tC = cmbHorario.getSelectedItem().toString();
+        
+        
+        String iC = cmbInstalacion.getSelectedItem().toString();
+        String[] I = iC.split("-");
+        String ic = I[0]; 
+        
+        String aC = cmbActividad.getSelectedItem().toString();
+        String[] A = aC.split("-");
+        String nc = A[0]; 
+        
+        
+        String inC = cmbInstructor.getSelectedItem().toString();
+        String[] IN = inC.split("-");
+        String nin = IN[0]; 
+        
+        int cap = Integer.parseInt(txtCapacidad.getText());
+
+        PreparedStatement ps = null;
+        try {
+            String query = "INSERT INTO Grupo (Horario, Capacidad, ActividadID, InstalacionID, PersonaID) VALUES (?, ?, ?, ?, ?)";
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, tC); 
+            ps.setInt(2, cap);   
+            ps.setInt(3, Integer.parseInt(nc));
+            ps.setInt(4, Integer.parseInt(ic));
+            ps.setInt(5, Integer.parseInt(nin));
+
+            int filasInsertadas = ps.executeUpdate();
+            if (filasInsertadas > 0) {
+                System.out.println("Registro insertado correctamente.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException closeEx) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, closeEx);
+                }
+            }
+        }
+   
+    
+    }
+    
+    
+     public void llenarInstalacion(){
+        try {
+            stm = con.createStatement();
+            String query = "SELECT * FROM Instalacion";
+            ResultSet res = stm.executeQuery(query);
+            String nam = ""; int id=0;
+            while(res.next()){
+                nam = res.getString("Nombre");
+                id = res.getInt("InstalacionID");
+                cmbInstalacion.addItem(id+"-"+nam);
             }
             
             
