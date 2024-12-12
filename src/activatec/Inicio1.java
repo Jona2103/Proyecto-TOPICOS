@@ -4,9 +4,9 @@
  */
 package activatec;
 import CodigosPersonalizados.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.CardLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -29,6 +29,29 @@ public class Inicio1 extends javax.swing.JFrame {
     public Inicio1() {
         initComponents();
         barraArriba1.setParentFrame(this);
+        iconConfig.addMouseListener(new MouseListener() {
+            private boolean esVisible = false;
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                if (esVisible) {
+                    panelAjustes.setVisible(true);
+                } else {
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
         
         /*apilar = new CardLayout();
         contenedor = new JPanel(apilar);
@@ -67,18 +90,19 @@ public class Inicio1 extends javax.swing.JFrame {
     private void initComponents() {
 
         fondo = new javax.swing.JPanel();
+        iconConfig = new javax.swing.JLabel();
+        panelAjustes = new PanelRedondo(65);
         barraArriba1 = new Componentes.BarraArriba();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new PanelRedondo(100);
         jPanel8 = new PanelRedondo(100);
         jPanel9 = new PanelRedondo(100);
+        lblTigre = new javax.swing.JLabel();
         jPanel11 = new PanelRedondo(100);
         jPanel13 = new PanelRedondo(100);
         jLabel2 = new javax.swing.JLabel();
-        lblTigre = new javax.swing.JLabel();
         Carrusel4 = new PanelRedondo(100);
         Carrusel5 = new PanelRedondo(100);
-        jLabel3 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         panelActividades = new PanelRedondo(30);
         panelActividades1 = new PanelRedondo(30);
@@ -98,6 +122,25 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.setMaximumSize(new java.awt.Dimension(62, 62));
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
+
+        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/config (3).png"))); // NOI18N
+        iconConfig.setText("jLabel3");
+        fondo.add(iconConfig);
+        iconConfig.setBounds(1260, 40, 50, 48);
+
+        javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
+        panelAjustes.setLayout(panelAjustesLayout);
+        panelAjustesLayout.setHorizontalGroup(
+            panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+        panelAjustesLayout.setVerticalGroup(
+            panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+
+        fondo.add(panelAjustes);
+        panelAjustes.setBounds(1200, 40, 110, 110);
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
@@ -155,6 +198,10 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel9);
         jPanel9.setBounds(1260, 380, 62, 64);
 
+        lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
+        fondo.add(lblTigre);
+        lblTigre.setBounds(80, 50, 70, 76);
+
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -192,10 +239,6 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel13);
         jPanel13.setBounds(50, 110, 320, 430);
 
-        lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
-        fondo.add(lblTigre);
-        lblTigre.setBounds(70, 50, 70, 76);
-
         Carrusel4.setBackground(new java.awt.Color(255, 255, 255));
         Carrusel4.setMinimumSize(new java.awt.Dimension(1366, 768));
         Carrusel4.setName(""); // NOI18N
@@ -211,16 +254,11 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(Carrusel4);
         Carrusel4.setBounds(950, 120, 260, 280);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/config (3).png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        fondo.add(jLabel3);
-        jLabel3.setBounds(1260, 40, 51, 48);
-
         lblNombre.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNombre.setText("Avisos");
         fondo.add(lblNombre);
-        lblNombre.setBounds(150, 60, 140, 30);
+        lblNombre.setBounds(160, 60, 140, 30);
 
         javax.swing.GroupLayout panelActividadesLayout = new javax.swing.GroupLayout(panelActividades);
         panelActividades.setLayout(panelActividadesLayout);
@@ -248,7 +286,7 @@ public class Inicio1 extends javax.swing.JFrame {
         );
 
         fondo.add(panelActividades1);
-        panelActividades1.setBounds(470, 590, 440, 160);
+        panelActividades1.setBounds(450, 590, 440, 160);
 
         javax.swing.GroupLayout panelActividades2Layout = new javax.swing.GroupLayout(panelActividades2);
         panelActividades2.setLayout(panelActividades2Layout);
@@ -316,9 +354,9 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel Carrusel5;
     private Componentes.BarraArriba barraArriba1;
     private javax.swing.JPanel fondo;
+    private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
@@ -330,5 +368,6 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelActividades1;
     private javax.swing.JPanel panelActividades2;
+    private javax.swing.JPanel panelAjustes;
     // End of variables declaration//GEN-END:variables
 }
