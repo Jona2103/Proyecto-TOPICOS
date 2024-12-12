@@ -81,6 +81,7 @@ public class Inicio1 extends javax.swing.JFrame {
         barraArriba1 = new Componentes.BarraArriba();
         tigerGrande = new javax.swing.JLabel();
         jPanel8 = new PanelRedondo(100);
+        jLabel3 = new javax.swing.JLabel();
         jPanel9 = new PanelRedondo(100);
         lblTigre = new javax.swing.JLabel();
         jPanel11 = new PanelRedondo(100);
@@ -88,11 +89,14 @@ public class Inicio1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Carrusel4 = new PanelRedondo(100);
         Carrusel5 = new PanelRedondo(100);
-        lblNombre = new javax.swing.JLabel();
         panelActividades = new PanelRedondo(30);
+        lblNombre = new javax.swing.JLabel();
         panelActividades1 = new PanelRedondo(30);
+        lblNombre2 = new javax.swing.JLabel();
         panelActividades2 = new PanelRedondo(30)
         ;
+        lblNombre3 = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -107,7 +111,7 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
 
-        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Config_1.png"))); // NOI18N
+        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configNegro.png"))); // NOI18N
         iconConfig.setText("jLabel3");
         fondo.add(iconConfig);
         iconConfig.setBounds(1280, 40, 50, 48);
@@ -115,14 +119,16 @@ public class Inicio1 extends javax.swing.JFrame {
         panelAjustes.setBackground(new java.awt.Color(255, 255, 255));
 
         salir.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         salir.setText("Salir");
 
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
 
         modoNigth.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        modoNigth.setForeground(new java.awt.Color(0, 0, 0));
         modoNigth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        modoNigth.setText("Modo Noche");
+        modoNigth.setText("Modo Oscuro");
 
         jSeparator3.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -136,7 +142,7 @@ public class Inicio1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAjustesLayout.createSequentialGroup()
-                        .addComponent(modoNigth, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addComponent(modoNigth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(13, 13, 13))
                     .addGroup(panelAjustesLayout.createSequentialGroup()
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,19 +175,23 @@ public class Inicio1 extends javax.swing.JFrame {
         jPanel8.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel8.setPreferredSize(new java.awt.Dimension(62, 64));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tpc-m (1).png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3))
         );
 
         fondo.add(jPanel8);
-        jPanel8.setBounds(1260, 260, 62, 64);
+        jPanel8.setBounds(1260, 240, 60, 60);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
@@ -199,7 +209,7 @@ public class Inicio1 extends javax.swing.JFrame {
         );
 
         fondo.add(jPanel9);
-        jPanel9.setBounds(1260, 360, 62, 64);
+        jPanel9.setBounds(1260, 330, 62, 64);
 
         lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
         fondo.add(lblTigre);
@@ -257,23 +267,28 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(Carrusel4);
         Carrusel4.setBounds(950, 120, 260, 280);
 
-        lblNombre.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombre.setText("Avisos");
-        fondo.add(lblNombre);
-        lblNombre.setBounds(160, 60, 140, 30);
-
         panelActividades.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNombre.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre.setText("Mis Actividades");
 
         javax.swing.GroupLayout panelActividadesLayout = new javax.swing.GroupLayout(panelActividades);
         panelActividades.setLayout(panelActividadesLayout);
         panelActividadesLayout.setHorizontalGroup(
             panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(panelActividadesLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         panelActividadesLayout.setVerticalGroup(
             panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(panelActividadesLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         fondo.add(panelActividades);
@@ -281,15 +296,26 @@ public class Inicio1 extends javax.swing.JFrame {
 
         panelActividades1.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblNombre2.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre2.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre2.setText("Actividades Disponibles");
+
         javax.swing.GroupLayout panelActividades1Layout = new javax.swing.GroupLayout(panelActividades1);
         panelActividades1.setLayout(panelActividades1Layout);
         panelActividades1Layout.setHorizontalGroup(
             panelActividades1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(panelActividades1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         panelActividades1Layout.setVerticalGroup(
             panelActividades1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(panelActividades1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(lblNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         fondo.add(panelActividades1);
@@ -297,19 +323,37 @@ public class Inicio1 extends javax.swing.JFrame {
 
         panelActividades2.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblNombre3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre3.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre3.setText("Mis Actividades");
+
         javax.swing.GroupLayout panelActividades2Layout = new javax.swing.GroupLayout(panelActividades2);
         panelActividades2.setLayout(panelActividades2Layout);
         panelActividades2Layout.setHorizontalGroup(
             panelActividades2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(panelActividades2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         panelActividades2Layout.setVerticalGroup(
             panelActividades2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(panelActividades2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         fondo.add(panelActividades2);
         panelActividades2.setBounds(920, 590, 420, 160);
+
+        lblNombre1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
+        lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre1.setText("Avisos");
+        fondo.add(lblNombre1);
+        lblNombre1.setBounds(160, 60, 140, 30);
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -359,12 +403,16 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
+    private javax.swing.JLabel lblNombre3;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JLabel modoNigth;
     private javax.swing.JPanel panelActividades;
