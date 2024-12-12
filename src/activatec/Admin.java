@@ -24,6 +24,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -60,8 +62,40 @@ public class Admin extends javax.swing.JFrame {
         llenarInstructor();
         llenarActividad();
         llenarInstalacion();
-        barraArriba2.setParentFrame(this);
-        btnAgregaract.addActionListener(new Interna());
+        m = (DefaultTableModel)tblAct.getModel();
+        // Suponiendo que tienes un botón llamado "btnBorrar"
+        btnBorrarAct.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        // Obtener la fila seleccionada en la tabla
+        
+        // Verificar si una fila está seleccionada
+        if (tblAct.getSelectedRow() != -1) {
+            // Obtener el ID de la actividad desde la tabla (asumiendo que el ID está en la primera columna)
+            String nombre =  tblAct.getValueAt(tblAct.getSelectedRow(), tblAct.getSelectedColumn()).toString(); // Asumiendo que la primera columna es el ID
+            
+            // Mostrar confirmación para borrar la actividad
+            int confirmacion = JOptionPane.showConfirmDialog(null, 
+                "¿Estás seguro de que quieres borrar esta actividad?", 
+                "Confirmación de borrado", JOptionPane.YES_NO_OPTION);
+            
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                // Llamar al método para borrar la actividad
+                borrarActividad(nombre);
+                
+                // Eliminar la fila de la tabla
+                DefaultTableModel modelo = (DefaultTableModel) tblAct.getModel();
+                modelo.removeRow(tblAct.getSelectedRow());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila para borrar.");
+        }
+        }
+         });
+
+        cargarActividades();
+               barraArriba2.setParentFrame(this);
+        btnAgregaract1.addActionListener(new Interna());
         CrearGrupo.setVisible(false);
         btnGrupo.addActionListener(
         new ActionListener(){
@@ -72,18 +106,18 @@ public class Admin extends javax.swing.JFrame {
         
         }
         );
-Añadir1.setVisible(false);
-CrearGrupo1.setVisible(false);
-Grupos.setVisible(false);
-Crear1.addMouseListener(new MouseAdapter() {
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // Cambiar la visibilidad del panel "CrearGrupo" cuando se haga clic en el JLabel "Crear"
-        CrearGrupo1.setVisible(true);  // Mostrar el panel CrearGrupo
-        Añadir1.setVisible(false);     // Ocultar el panel Añadir
+        Añadir1.setVisible(false);
+        CrearGrupo1.setVisible(false);
         Grupos.setVisible(false);
-    }
-});
+        Crear1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Cambiar la visibilidad del panel "CrearGrupo" cuando se haga clic en el JLabel "Crear"
+                CrearGrupo1.setVisible(true);  // Mostrar el panel CrearGrupo
+                Añadir1.setVisible(false);     // Ocultar el panel Añadir
+                Grupos.setVisible(false);
+            }
+        });
 
 Agregar1.addMouseListener(new MouseAdapter() {
     @Override
@@ -107,13 +141,77 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
 });
     }
     
+    public void borrarActividad(String Nombre) {
+    try {
+        // Crear la sentencia SQL para eliminar la actividad
+        String query = "DELETE FROM ActividadExtraescolar WHERE Nombre = ?";
+        
+        // Preparar la sentencia SQL
+        PreparedStatement stmt = con.prepareStatement(query);
+        stmt.setString(1, Nombre);  // Establecer el ID de la actividad como parámetro
+        
+        // Ejecutar la actualización (borrar)
+        int filasAfectadas = stmt.executeUpdate();
+        
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(null, "Actividad eliminada correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró la actividad.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al borrar la actividad: " + e.getMessage());
+    }
+}
+    
+    private DefaultTableModel m;
+
+    public void cargarActividades() {
+        // Configurar el modelo de la tabla
+ 
+        m.addColumn("Nombre");
+        m.addColumn("Descripcion");
+        m.addColumn("Tipo de crédito");
+        
+        // Conectar y obtener los datos
+         try {
+            // Crear la sentencia SQL para obtener las actividades
+            String query = "SELECT A.Nombre, A.Descripcion, C.Tipo FROM ActividadExtraescolar A "
+              + "INNER JOIN Credito C ON C.CreditoID = A.CreditoID";
+
+            // Ejecutar la consulta
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Recorrer el ResultSet y agregar los resultados al modelo de la tabla
+            while (rs.next()) {
+                // Crear un arreglo con los datos de cada fila
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString("Nombre");
+                fila[1] = rs.getString("Descripcion");
+                fila[2] = rs.getString("Tipo");
+
+                // Añadir la fila al modelo de la tabla
+                m.addRow(fila);
+            }
+
+            // Establecer el modelo de datos al JTable
+           
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar las actividades: " + e.getMessage());
+        }
+    
+    }
+    
     class Interna implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String nombre = txtNombre.getText();
-        String desc = TxtDescripcion.getText();
-        String tC = CmbCreditos.getSelectedItem().toString();
+        String nombre = txtNombre1.getText();
+        String desc = TxtDescripcion1.getText();
+        String tC = CmbCreditos1.getSelectedItem().toString();
         String[] C = tC.split("-");
         String nc = C[0]; // CreditoID
 
@@ -327,6 +425,13 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         CmbCreditos1 = new javax.swing.JComboBox<>();
         btnAgregaract1 = new javax.swing.JButton();
         btnCancelarGru = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblTigre1 = new javax.swing.JLabel();
+        flechaPaAbajo1 = new javax.swing.JLabel();
+        Crear1 = new javax.swing.JLabel();
+        Agregar1 = new javax.swing.JLabel();
+        lblVerGrupo = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         CrearGrupo1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -341,15 +446,9 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         btnGrupo1 = new javax.swing.JButton();
         btnCancelarAct = new javax.swing.JButton();
         Grupos = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        lblTigre1 = new javax.swing.JLabel();
-        flechaPaAbajo1 = new javax.swing.JLabel();
-        Crear1 = new javax.swing.JLabel();
-        Agregar1 = new javax.swing.JLabel();
-        lblVerGrupo = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAct = new javax.swing.JTable();
+        btnBorrarAct = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel10.setText("Bienvenido Administrativo");
@@ -616,6 +715,71 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         btnCancelarGru.setBorder(null);
         Añadir1.add(btnCancelarGru, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 60, -1));
 
+        contenido.add(Añadir1);
+        Añadir1.setBounds(410, 170, 430, 340);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblTigre1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
+
+        flechaPaAbajo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flechaPaAbajo.png"))); // NOI18N
+
+        Crear1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Crear1.setText("Crear grupo");
+
+        Agregar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Agregar1.setText("Agregar una Actividades");
+
+        lblVerGrupo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblVerGrupo.setText("Ver Grupo");
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notfayer_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(lblTigre1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(flechaPaAbajo1)
+                .addGap(76, 76, 76)
+                .addComponent(Crear1)
+                .addGap(35, 35, 35)
+                .addComponent(Agregar1)
+                .addGap(61, 61, 61)
+                .addComponent(lblVerGrupo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
+                .addComponent(jLabel19)
+                .addGap(49, 49, 49))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTigre1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Crear1)
+                                    .addComponent(Agregar1)
+                                    .addComponent(lblVerGrupo))
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(34, 34, 34))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(flechaPaAbajo1)
+                        .addGap(13, 13, 13)))
+                .addGap(24, 24, 24))
+        );
+
+        contenido.add(jPanel3);
+        jPanel3.setBounds(0, 0, 1303, 106);
+
         CrearGrupo1.setBackground(new java.awt.Color(255, 255, 255));
         CrearGrupo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
         CrearGrupo1.setToolTipText("");
@@ -663,101 +827,49 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         btnCancelarAct.setBorder(null);
         CrearGrupo1.add(btnCancelarAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 60, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        contenido.add(CrearGrupo1);
+        CrearGrupo1.setBounds(-30, 170, 430, 340);
+
+        Grupos.setBackground(new java.awt.Color(255, 255, 255));
+
+        tblAct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(tblAct);
+
+        btnBorrarAct.setText("Borrar");
 
         javax.swing.GroupLayout GruposLayout = new javax.swing.GroupLayout(Grupos);
         Grupos.setLayout(GruposLayout);
         GruposLayout.setHorizontalGroup(
             GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addGroup(GruposLayout.createSequentialGroup()
+                .addGroup(GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GruposLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GruposLayout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(btnBorrarAct)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         GruposLayout.setVerticalGroup(
             GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GruposLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrarAct)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        CrearGrupo1.add(Grupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
-
-        Añadir1.add(CrearGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 340));
-
-        contenido.add(Añadir1);
-        Añadir1.setBounds(440, 160, 430, 340);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblTigre1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
-
-        flechaPaAbajo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flechaPaAbajo.png"))); // NOI18N
-
-        Crear1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Crear1.setText("Crear grupo");
-
-        Agregar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Agregar1.setText("Agregar una Actividades");
-
-        lblVerGrupo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblVerGrupo.setText("Ver Grupo");
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notfayer_1.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lblTigre1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(flechaPaAbajo1)
-                .addGap(76, 76, 76)
-                .addComponent(Crear1)
-                .addGap(35, 35, 35)
-                .addComponent(Agregar1)
-                .addGap(61, 61, 61)
-                .addComponent(lblVerGrupo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 652, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addGap(49, 49, 49))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTigre1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Crear1)
-                                    .addComponent(Agregar1)
-                                    .addComponent(lblVerGrupo))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(34, 34, 34))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(flechaPaAbajo1)
-                        .addGap(13, 13, 13)))
-                .addGap(24, 24, 24))
-        );
-
-        contenido.add(jPanel3);
-        jPanel3.setBounds(0, 0, 1380, 106);
+        contenido.add(Grupos);
+        Grupos.setBounds(860, 170, 450, 340);
 
         fondo.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1370, 740));
 
@@ -830,6 +942,7 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
     private Componentes.BarraArriba barraArriba2;
     private javax.swing.JButton btnAgregaract;
     private javax.swing.JButton btnAgregaract1;
+    private javax.swing.JButton btnBorrarAct;
     private javax.swing.JButton btnCancelarAct;
     private javax.swing.JButton btnCancelarGru;
     private javax.swing.JButton btnGrupo;
@@ -871,12 +984,12 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNovedades;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JLabel lblTigre1;
     private javax.swing.JLabel lblVerGrupo;
+    private javax.swing.JTable tblAct;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtCapacidad1;
     private javax.swing.JTextField txtNombre;
