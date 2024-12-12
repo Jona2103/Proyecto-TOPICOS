@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,10 +25,9 @@ public class CarruselDePaneles extends javax.swing.JFrame {
     private JPanel panelContenedor;
     private CardLayout cardLayout;
     private int currentPanelIndex = 0;
-    
+
     public CarruselDePaneles() {
-        initComponents();
-        
+        // Configuración de la ventana
         setTitle("Carrusel de Paneles");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,6 +45,7 @@ public class CarruselDePaneles extends javax.swing.JFrame {
         // Iniciar el carrusel en un hilo
         new Thread(new CarouselRunnable()).start();
 
+        // Hacer visible la ventana
         setVisible(true);
     }
     
@@ -129,7 +128,7 @@ public class CarruselDePaneles extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SwingUtilities.invokeLater(() -> new CarruselDePaneles());
+                new CarruselDePaneles().setVisible(true);
             }
         });
     }

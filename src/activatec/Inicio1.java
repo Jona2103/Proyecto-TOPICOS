@@ -4,9 +4,9 @@
  */
 package activatec;
 import CodigosPersonalizados.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-
+import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,12 +21,41 @@ public class Inicio1 extends javax.swing.JFrame {
      */
     
     private JFrame ventana;
+    private JPanel contenedor;
+    private int contador=0;
+    private CardLayout apilar;
 
     
     public Inicio1() {
         initComponents();
         barraArriba1.setParentFrame(this);
+        
+        apilar = new CardLayout();
+        contenedor = new JPanel(apilar);
+        add(contenedor,BorderLayout.CENTER);
+        
+        contenedor.add(Carrusel1,"Panel 1");
+        contenedor.add(Carrusel2,"Panel 2");
+        contenedor.add(Carrusel3,"Panel 3");
+        
+        new Thread(new CarouselRunnable()).start();
+        setVisible(true);
              
+    }
+    
+    private class CarouselRunnable implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(2000);  
+                    contador = (contador + 1) % 3; 
+                    apilar.show(contenedor, "Panel " + (contador + 1));  
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
     }
 
     /**
@@ -40,7 +69,8 @@ public class Inicio1 extends javax.swing.JFrame {
 
         fondo = new javax.swing.JPanel();
         barraArriba1 = new Componentes.BarraArriba();
-        no = new PanelRedondo(100);
+        Carrusel1 = new PanelRedondo(100);
+        Carrusel3 = new PanelRedondo(100);
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new PanelRedondo(100);
         jPanel8 = new PanelRedondo(100);
@@ -51,6 +81,7 @@ public class Inicio1 extends javax.swing.JFrame {
         lblTigre = new javax.swing.JLabel();
         IconoFoto = new PanelRedondo(100);
         PanelName = new PanelRedondo(20);
+        Carrusel2 = new PanelRedondo(100);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -67,24 +98,42 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
-        no.setBackground(new java.awt.Color(255, 255, 255));
-        no.setMinimumSize(new java.awt.Dimension(1366, 768));
-        no.setName(""); // NOI18N
-        no.setPreferredSize(new java.awt.Dimension(1366, 768));
+        Carrusel1.setBackground(new java.awt.Color(255, 51, 0));
+        Carrusel1.setMinimumSize(new java.awt.Dimension(1366, 768));
+        Carrusel1.setName(""); // NOI18N
+        Carrusel1.setPreferredSize(new java.awt.Dimension(1366, 768));
 
-        javax.swing.GroupLayout noLayout = new javax.swing.GroupLayout(no);
-        no.setLayout(noLayout);
-        noLayout.setHorizontalGroup(
-            noLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout Carrusel1Layout = new javax.swing.GroupLayout(Carrusel1);
+        Carrusel1.setLayout(Carrusel1Layout);
+        Carrusel1Layout.setHorizontalGroup(
+            Carrusel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1366, Short.MAX_VALUE)
         );
-        noLayout.setVerticalGroup(
-            noLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Carrusel1Layout.setVerticalGroup(
+            Carrusel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 768, Short.MAX_VALUE)
         );
 
-        fondo.add(no);
-        no.setBounds(950, 140, 260, 280);
+        fondo.add(Carrusel1);
+        Carrusel1.setBounds(570, 400, 260, 280);
+
+        Carrusel3.setBackground(new java.awt.Color(0, 153, 153));
+        Carrusel3.setMinimumSize(new java.awt.Dimension(1366, 768));
+        Carrusel3.setName(""); // NOI18N
+
+        javax.swing.GroupLayout Carrusel3Layout = new javax.swing.GroupLayout(Carrusel3);
+        Carrusel3.setLayout(Carrusel3Layout);
+        Carrusel3Layout.setHorizontalGroup(
+            Carrusel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1366, Short.MAX_VALUE)
+        );
+        Carrusel3Layout.setVerticalGroup(
+            Carrusel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 768, Short.MAX_VALUE)
+        );
+
+        fondo.add(Carrusel3);
+        Carrusel3.setBounds(160, 340, 260, 280);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
         fondo.add(jLabel1);
@@ -226,6 +275,24 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(PanelName);
         PanelName.setBounds(1150, 40, 120, 40);
 
+        Carrusel2.setBackground(new java.awt.Color(102, 255, 102));
+        Carrusel2.setMinimumSize(new java.awt.Dimension(1366, 768));
+        Carrusel2.setName(""); // NOI18N
+
+        javax.swing.GroupLayout Carrusel2Layout = new javax.swing.GroupLayout(Carrusel2);
+        Carrusel2.setLayout(Carrusel2Layout);
+        Carrusel2Layout.setHorizontalGroup(
+            Carrusel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        Carrusel2Layout.setVerticalGroup(
+            Carrusel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        fondo.add(Carrusel2);
+        Carrusel2.setBounds(980, 290, 37, 40);
+
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
@@ -264,33 +331,13 @@ public class Inicio1 extends javax.swing.JFrame {
                 new Inicio1().setVisible(true);
             }
         });
-        
-       /* Thread hiloCarrusel = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(2000);  // Esperar 2 segundos antes de cambiar el panel
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    cambiarPanel();  // Cambiar al siguiente panel
-                }
-            }
-        });
-        hiloCarrusel.start();  
-        */
     }
-    
-    /*private void cambiarPanel() {
-        panelIndex++;
-        if (panelIndex >= 3) {
-            panelIndex = 0;  // Volver al primer panel cuando se llega al último
-        }
-        cardLayout.show(panelContenedor, "Panel " + (panelIndex + 1));
-    }*/
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Carrusel1;
+    private javax.swing.JPanel Carrusel2;
+    private javax.swing.JPanel Carrusel3;
     private javax.swing.JPanel IconoFoto;
     private javax.swing.JPanel PanelName;
     private Componentes.BarraArriba barraArriba1;
@@ -303,6 +350,5 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblTigre;
-    private javax.swing.JPanel no;
     // End of variables declaration//GEN-END:variables
 }
