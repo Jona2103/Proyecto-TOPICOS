@@ -96,6 +96,7 @@ public class Inicio extends javax.swing.JFrame {
         lblNombre2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblNombre1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -337,6 +338,11 @@ public class Inicio extends javax.swing.JFrame {
         fondo.add(lblNombre1);
         lblNombre1.setBounds(160, 60, 140, 30);
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tecnologico-Nacional-de-Mexico-r.png"))); // NOI18N
+        jLabel5.setMinimumSize(new java.awt.Dimension(0, 0));
+        fondo.add(jLabel5);
+        jLabel5.setBounds(990, 590, 310, 150);
+
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
@@ -390,6 +396,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

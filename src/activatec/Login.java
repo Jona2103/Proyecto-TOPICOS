@@ -91,16 +91,27 @@ public class Login extends javax.swing.JFrame {
             String query = "SELECT * FROM Usuario WHERE NombreUsuario = '" + s + "' AND Contraseña = '" + p + "'";
             ResultSet r = stm.executeQuery(query);
 
-            if (r.next() && s.charAt(0) == '2') {
+            if(r.next()){
+            if (s.charAt(0) == '2') {
                 showMessageDialog(null, "Correcto, es estudiante");
-
-                dispose();  
-
-                Inicio inicioFrame = new Inicio();  
-                inicioFrame.setVisible(true);  
+                dispose();    
 
             } else {
-                System.out.println("Usuario o contraseña incorrectos");
+            if(s.charAt(0) == '3'){
+                showMessageDialog(null, "Correcto, es administrador ");
+
+                dispose();
+                Admin A = new Admin();
+                A.setVisible(true);
+            }else{
+                if(s.charAt(0) == '4'){
+                  showMessageDialog(null, "Correcto, es instructor ");
+               
+                }
+            }
+            }
+            }else{
+             System.out.println("Usuario o contraseña incorrectos");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
