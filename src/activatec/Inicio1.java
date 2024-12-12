@@ -9,8 +9,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -51,9 +54,7 @@ public class Inicio1 extends javax.swing.JFrame {
         Conectar();
         barraArriba1.setParentFrame(this);
         panelAjustes.setVisible(false);
-        
-        lblNombreAjuste =
-        
+                
         iconConfig.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -79,6 +80,7 @@ public class Inicio1 extends javax.swing.JFrame {
             public void mouseExited(MouseEvent e) {}
         });
         
+            
         /*apilar = new CardLayout();
         contenedor = new JPanel(apilar);
         add(contenedor,BorderLayout.CENTER);
@@ -88,7 +90,6 @@ public class Inicio1 extends javax.swing.JFrame {
         
         new Thread(new CarouselRunnable()).start();
         setVisible(true);*/
-             
     }
     
     /*private class CarouselRunnable implements Runnable {
@@ -118,6 +119,9 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo = new javax.swing.JPanel();
         iconConfig = new javax.swing.JLabel();
         panelAjustes = new PanelRedondo(65);
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         barraArriba1 = new Componentes.BarraArriba();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new PanelRedondo(100);
@@ -152,21 +156,45 @@ public class Inicio1 extends javax.swing.JFrame {
         iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/config (3).png"))); // NOI18N
         iconConfig.setText("jLabel3");
         fondo.add(iconConfig);
-        iconConfig.setBounds(1260, 40, 50, 48);
+        iconConfig.setBounds(1280, 40, 50, 48);
+
+        jLabel3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("jLabel3");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("jLabel3");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel6.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("jLabel3");
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
         panelAjustes.setLayout(panelAjustesLayout);
         panelAjustesLayout.setHorizontalGroup(
             panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelAjustesLayout.setVerticalGroup(
             panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
+            .addGroup(panelAjustesLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fondo.add(panelAjustes);
-        panelAjustes.setBounds(1200, 40, 110, 110);
+        panelAjustes.setBounds(1220, 40, 110, 150);
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
@@ -246,7 +274,7 @@ public class Inicio1 extends javax.swing.JFrame {
 
         jPanel13.setMinimumSize(new java.awt.Dimension(62, 64));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bandaGuerra.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torneo (2).jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -259,7 +287,7 @@ public class Inicio1 extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 430, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         fondo.add(jPanel13);
@@ -332,7 +360,7 @@ public class Inicio1 extends javax.swing.JFrame {
         lblNombreAjuste.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombreAjuste.setText("Nombre");
         fondo.add(lblNombreAjuste);
-        lblNombreAjuste.setBounds(1090, 60, 140, 15);
+        lblNombreAjuste.setBounds(1130, 60, 140, 15);
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -383,6 +411,9 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
