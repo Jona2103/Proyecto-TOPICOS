@@ -15,7 +15,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,9 +36,14 @@ public class Inicio extends javax.swing.JFrame {
     private Connection con;
     private Statement stm;
     
+    
+    
+    
+    DefaultTableModel m;
+    DefaultTableModel mm;
+    
  
     public void Conectar(){
-        
         String url = "jdbc:sqlserver://OswaldoDiaz:1433;databaseName=TAP;encrypt=true;trustServerCertificate=true;";
         
         try {
@@ -49,41 +56,130 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     public void ConsultarAlumno(){
-        String iC = cmbPersonas.getSelectedItem().toString();
-        String[] I = iC.split("-");
-        String ic = I[0]; 
+     
+         //try {
+          //      String query = "SELECT P.Nombre, P.ApellidoP, NoControl, C.Nombre FROM Persona WHERE NoControl = '"+s+"' FROM Persona P"+
+           //         "INNER JOIN Carrera C ON C.CarreraID = P.CarreraID";
+           // stm = con.createStatement();
+          //  ResultSet rs = stm.executeQuery(query);
+          //  lblNombreA.setText( rs.getString("Nombre") +  rs.getString("ApellidoP"));
+          //  lblControl.setText(rs.getString("NoControl"));   
+           // lblCarrera.setText(rs.getString("Nombre"));
+
+            
+            
+            
+       // } catch (SQLException ex) {
+       //     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+       // }
+        
+         
+        
+        //String query2 = "SELECT * FROM Persona WHERE"
         
     }
     
-    public void llenarPersonas(){
+    
+    
+     public void llenarAct(){
+        
+        mm.addColumn("Nombre");
+        mm.addColumn("Descripcion");
+        mm.addColumn("Tipo de crédito");
+        
+        // Conectar y obtener los datos
          try {
-            stm = con.createStatement();
-            String query = "SELECT * FROM Persona";
-            ResultSet res = stm.executeQuery(query);
-            String nam = ""; int id=0; String noc = "";   String ap = "";
-            while(res.next()){
-                id = res.getInt("PersonaID");
-                nam = res.getString("Nombre");
-                noc = res.getString("NoControl");
-                ap = res.getString("ApellidoP");
-                cmbPersonas.addItem(id+"-"+nam+"-"+noc+"-"+ap);
+            // Crear la sentencia SQL para obtener las actividades
+           String query = "SELECT A.Nombre, A.Descripcion, C.Tipo FROM ActividadExtraescolar A "
+                   + "INNER JOIN Credito C ON C.CreditoID = A.CreditoID ";
+
+
+
+            // Ejecutar la consulta
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Recorrer el ResultSet y agregar los resultados al modelo de la tabla
+            while (rs.next()) {
+                // Crear un arreglo con los datos de cada fila
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString("Nombre");
+                fila[1] = rs.getString("Descripcion");
+                fila[2] = rs.getString("Tipo");
+
+                // Añadir la fila al modelo de la tabla
+                mm.addRow(fila);
             }
-            String query2 = "SELECT * FROM Persona WHERE"
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
+            // Establecer el modelo de datos al JTable
+           
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar las actividades: " + e.getMessage());
+        }
+    
+    }
+    
+    public void llenarmisAct(){
+        
+        m.addColumn("Nombre");
+        m.addColumn("Descripcion");
+        m.addColumn("Tipo de crédito");
+        
+        // Conectar y obtener los datos
+         try {
+            // Crear la sentencia SQL para obtener las actividades
+           String query = "SELECT A.Nombre, A.Descripcion, C.Tipo "
+              + "FROM ActividadExtraescolar A "
+              + "INNER JOIN Credito C ON C.CreditoID = A.CreditoID "
+              + "INNER JOIN Estudiante_Actividad EA ON EA.ActividadID = A.ActividadID "
+              + "WHERE EA.PersonaID = 1";
+
+
+
+            // Ejecutar la consulta
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Recorrer el ResultSet y agregar los resultados al modelo de la tabla
+            while (rs.next()) {
+                // Crear un arreglo con los datos de cada fila
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString("Nombre");
+                fila[1] = rs.getString("Descripcion");
+                fila[2] = rs.getString("Tipo");
+
+                // Añadir la fila al modelo de la tabla
+                m.addRow(fila);
+            }
+
+            // Establecer el modelo de datos al JTable
+           
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar las actividades: " + e.getMessage());
         }
     
     }
     
     
     
+   
+    
+    
+    
     
     public Inicio() {
         initComponents();
+        Login l = new Login();
         Conectar();
-        llenarPersonas();
+        ConsultarAlumno();
+        m= (DefaultTableModel)jTable1.getModel();
+        mm= (DefaultTableModel)tblActividadess.getModel();
+        llenarmisAct();
+        llenarAct();
         barraArriba1.setParentFrame(this);
         panelAjustes.setVisible(false);
         Actividades.setVisible(false);
@@ -203,6 +299,16 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         fondo = new javax.swing.JPanel();
+        Actividades = new PanelRedondo(30);
+        lblNombre4 = new javax.swing.JLabel();
+        lblCerrarAct = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblActividadess = new javax.swing.JTable();
+        misActividades = new PanelRedondo(30);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        lblNombre3 = new javax.swing.JLabel();
+        lblCerrarMisAct = new javax.swing.JLabel();
         panelActividades = new PanelRedondo(30);
         lblNombre = new javax.swing.JLabel();
         lblExtenderMis = new javax.swing.JLabel();
@@ -222,30 +328,15 @@ public class Inicio extends javax.swing.JFrame {
         jPanel11 = new PanelRedondo(30);
         panelCarrusel = new PanelRedondo(100);
         jLabel2 = new javax.swing.JLabel();
-        misActividades = new PanelRedondo(30);
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        lblNombre3 = new javax.swing.JLabel();
-        lblCerrarMisAct = new javax.swing.JLabel();
         Carrusel4 = new PanelRedondo(30);
         Carrusel5 = new PanelRedondo(100);
         avisos1 = new javax.swing.JLabel();
-        avisos2 = new javax.swing.JLabel();
-        avisos3 = new javax.swing.JLabel();
-        Actividades = new PanelRedondo(30);
-        lblNombre4 = new javax.swing.JLabel();
-        pnlCulturales = new javax.swing.JPanel();
-        pnlDeportivas = new javax.swing.JPanel();
-        pnlAcademicas = new javax.swing.JPanel();
-        depo = new javax.swing.JLabel();
-        clt = new javax.swing.JLabel();
-        aca = new javax.swing.JLabel();
-        lblCerrarAct = new javax.swing.JLabel();
+        lblNombreA = new javax.swing.JLabel();
+        lblControl = new javax.swing.JLabel();
         avisos = new javax.swing.JLabel();
         panelActividades2 = new PanelRedondo(30);
         lblNombre8 = new javax.swing.JLabel();
         lblExtenderAct = new javax.swing.JLabel();
-        cmbPersonas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -259,6 +350,116 @@ public class Inicio extends javax.swing.JFrame {
         fondo.setMaximumSize(new java.awt.Dimension(62, 62));
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
+
+        Actividades.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNombre4.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre4.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre4.setText("Actividades");
+
+        lblCerrarAct.setFont(new java.awt.Font("SF Pro Display", 0, 36)); // NOI18N
+        lblCerrarAct.setForeground(new java.awt.Color(0, 0, 0));
+        lblCerrarAct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCerrarAct.setText("-");
+        lblCerrarAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        tblActividadess.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tblActividadess);
+
+        javax.swing.GroupLayout ActividadesLayout = new javax.swing.GroupLayout(Actividades);
+        Actividades.setLayout(ActividadesLayout);
+        ActividadesLayout.setHorizontalGroup(
+            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrarAct)
+                .addGap(16, 16, 16))
+            .addGroup(ActividadesLayout.createSequentialGroup()
+                .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ActividadesLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(lblNombre4))
+                    .addGroup(ActividadesLayout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(192, Short.MAX_VALUE))
+        );
+        ActividadesLayout.setVerticalGroup(
+            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ActividadesLayout.createSequentialGroup()
+                .addComponent(lblCerrarAct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(lblNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
+        );
+
+        fondo.add(Actividades);
+        Actividades.setBounds(290, 40, 830, 660);
+
+        misActividades.setBackground(new java.awt.Color(255, 255, 255));
+        misActividades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        lblNombre3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre3.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre3.setText("Mis Actividades");
+
+        lblCerrarMisAct.setFont(new java.awt.Font("SF Pro Display", 0, 36)); // NOI18N
+        lblCerrarMisAct.setForeground(new java.awt.Color(0, 0, 0));
+        lblCerrarMisAct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCerrarMisAct.setText("-");
+        lblCerrarMisAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout misActividadesLayout = new javax.swing.GroupLayout(misActividades);
+        misActividades.setLayout(misActividadesLayout);
+        misActividadesLayout.setHorizontalGroup(
+            misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(misActividadesLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(misActividadesLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(lblNombre3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrarMisAct)
+                .addGap(16, 16, 16))
+        );
+        misActividadesLayout.setVerticalGroup(
+            misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, misActividadesLayout.createSequentialGroup()
+                .addGroup(misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(misActividadesLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCerrarMisAct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        fondo.add(misActividades);
+        misActividades.setBounds(290, 40, 830, 660);
 
         panelActividades.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -442,64 +643,6 @@ public class Inicio extends javax.swing.JFrame {
         fondo.add(panelCarrusel);
         panelCarrusel.setBounds(50, 110, 320, 430);
 
-        misActividades.setBackground(new java.awt.Color(255, 255, 255));
-        misActividades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        lblNombre3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        lblNombre3.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombre3.setText("Mis Actividades");
-
-        lblCerrarMisAct.setFont(new java.awt.Font("SF Pro Display", 0, 36)); // NOI18N
-        lblCerrarMisAct.setForeground(new java.awt.Color(0, 0, 0));
-        lblCerrarMisAct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCerrarMisAct.setText("-");
-        lblCerrarMisAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout misActividadesLayout = new javax.swing.GroupLayout(misActividades);
-        misActividades.setLayout(misActividadesLayout);
-        misActividadesLayout.setHorizontalGroup(
-            misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(misActividadesLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(misActividadesLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(lblNombre3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblCerrarMisAct)
-                .addGap(16, 16, 16))
-        );
-        misActividadesLayout.setVerticalGroup(
-            misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, misActividadesLayout.createSequentialGroup()
-                .addGroup(misActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(misActividadesLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCerrarMisAct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-
-        fondo.add(misActividades);
-        misActividades.setBounds(290, 40, 830, 660);
-
         Carrusel4.setBackground(new java.awt.Color(255, 255, 255));
         Carrusel4.setMinimumSize(new java.awt.Dimension(1366, 768));
         Carrusel4.setName(""); // NOI18N
@@ -519,142 +662,22 @@ public class Inicio extends javax.swing.JFrame {
         Carrusel4.add(avisos1);
         avisos1.setBounds(0, 160, 260, 30);
 
-        avisos2.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        avisos2.setForeground(new java.awt.Color(0, 0, 0));
-        avisos2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        avisos2.setText("Nombre Apellido");
-        Carrusel4.add(avisos2);
-        avisos2.setBounds(0, 40, 260, 30);
+        lblNombreA.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombreA.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombreA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombreA.setText("Nombre Apellido");
+        Carrusel4.add(lblNombreA);
+        lblNombreA.setBounds(0, 40, 260, 30);
 
-        avisos3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        avisos3.setForeground(new java.awt.Color(0, 0, 0));
-        avisos3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        avisos3.setText("No Control");
-        Carrusel4.add(avisos3);
-        avisos3.setBounds(0, 100, 260, 30);
+        lblControl.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblControl.setForeground(new java.awt.Color(0, 0, 0));
+        lblControl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblControl.setText("No Control");
+        Carrusel4.add(lblControl);
+        lblControl.setBounds(0, 100, 260, 30);
 
         fondo.add(Carrusel4);
         Carrusel4.setBounds(950, 120, 260, 280);
-
-        Actividades.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblNombre4.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        lblNombre4.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombre4.setText("Actividades");
-
-        javax.swing.GroupLayout pnlCulturalesLayout = new javax.swing.GroupLayout(pnlCulturales);
-        pnlCulturales.setLayout(pnlCulturalesLayout);
-        pnlCulturalesLayout.setHorizontalGroup(
-            pnlCulturalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
-        pnlCulturalesLayout.setVerticalGroup(
-            pnlCulturalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlDeportivasLayout = new javax.swing.GroupLayout(pnlDeportivas);
-        pnlDeportivas.setLayout(pnlDeportivasLayout);
-        pnlDeportivasLayout.setHorizontalGroup(
-            pnlDeportivasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
-        );
-        pnlDeportivasLayout.setVerticalGroup(
-            pnlDeportivasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlAcademicasLayout = new javax.swing.GroupLayout(pnlAcademicas);
-        pnlAcademicas.setLayout(pnlAcademicasLayout);
-        pnlAcademicasLayout.setHorizontalGroup(
-            pnlAcademicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
-        );
-        pnlAcademicasLayout.setVerticalGroup(
-            pnlAcademicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
-
-        depo.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        depo.setForeground(new java.awt.Color(0, 0, 0));
-        depo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        depo.setText("Deportivas");
-
-        clt.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        clt.setForeground(new java.awt.Color(0, 0, 0));
-        clt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        clt.setText("Culturales");
-
-        aca.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        aca.setForeground(new java.awt.Color(0, 0, 0));
-        aca.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        aca.setText("Academicas");
-
-        lblCerrarAct.setFont(new java.awt.Font("SF Pro Display", 0, 36)); // NOI18N
-        lblCerrarAct.setForeground(new java.awt.Color(0, 0, 0));
-        lblCerrarAct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCerrarAct.setText("-");
-        lblCerrarAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout ActividadesLayout = new javax.swing.GroupLayout(Actividades);
-        Actividades.setLayout(ActividadesLayout);
-        ActividadesLayout.setHorizontalGroup(
-            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ActividadesLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(pnlCulturales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(pnlDeportivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106)
-                .addComponent(pnlAcademicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
-            .addGroup(ActividadesLayout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(lblNombre4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
-                        .addComponent(depo)
-                        .addGap(187, 187, 187)
-                        .addComponent(aca)
-                        .addGap(87, 87, 87))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
-                        .addComponent(lblCerrarAct)
-                        .addGap(16, 16, 16))))
-            .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ActividadesLayout.createSequentialGroup()
-                    .addGap(106, 106, 106)
-                    .addComponent(clt)
-                    .addContainerGap(641, Short.MAX_VALUE)))
-        );
-        ActividadesLayout.setVerticalGroup(
-            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ActividadesLayout.createSequentialGroup()
-                .addComponent(lblCerrarAct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(lblNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlCulturales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlDeportivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlAcademicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(depo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aca, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(250, Short.MAX_VALUE))
-            .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
-                    .addContainerGap(373, Short.MAX_VALUE)
-                    .addComponent(clt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(246, 246, 246)))
-        );
-
-        fondo.add(Actividades);
-        Actividades.setBounds(290, 40, 830, 660);
 
         avisos.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         avisos.setForeground(new java.awt.Color(0, 0, 0));
@@ -698,10 +721,6 @@ public class Inicio extends javax.swing.JFrame {
 
         fondo.add(panelActividades2);
         panelActividades2.setBounds(670, 640, 380, 70);
-
-        cmbPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        fondo.add(cmbPersonas);
-        cmbPersonas.setBounds(120, 570, 72, 22);
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -750,15 +769,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel Actividades;
     private javax.swing.JPanel Carrusel4;
     private javax.swing.JPanel Carrusel5;
-    private javax.swing.JLabel aca;
     private javax.swing.JLabel avisos;
     private javax.swing.JLabel avisos1;
-    private javax.swing.JLabel avisos2;
-    private javax.swing.JLabel avisos3;
     private Componentes.BarraArriba barraArriba1;
-    private javax.swing.JLabel clt;
-    private javax.swing.JComboBox<String> cmbPersonas;
-    private javax.swing.JLabel depo;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel2;
@@ -767,17 +780,20 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCerrarAct;
     private javax.swing.JLabel lblCerrarMisAct;
+    private javax.swing.JLabel lblControl;
     private javax.swing.JLabel lblExtenderAct;
     private javax.swing.JLabel lblExtenderMis;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre3;
     private javax.swing.JLabel lblNombre4;
     private javax.swing.JLabel lblNombre8;
+    private javax.swing.JLabel lblNombreA;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JPanel misActividades;
     private javax.swing.JLabel modoNigth;
@@ -785,10 +801,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel panelActividades2;
     private javax.swing.JPanel panelAjustes;
     private javax.swing.JPanel panelCarrusel;
-    private javax.swing.JPanel pnlAcademicas;
-    private javax.swing.JPanel pnlCulturales;
-    private javax.swing.JPanel pnlDeportivas;
     private javax.swing.JLabel salir;
+    private javax.swing.JTable tblActividadess;
     private javax.swing.JPanel tecTepic;
     private javax.swing.JLabel tigerGrande;
     // End of variables declaration//GEN-END:variables

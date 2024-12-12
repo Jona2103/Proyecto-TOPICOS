@@ -57,6 +57,7 @@ public class Admin extends javax.swing.JFrame {
     
     
     public Admin() {
+        
         initComponents();
         Conectar();
         llenarTipoCredito();
@@ -64,6 +65,8 @@ public class Admin extends javax.swing.JFrame {
         llenarActividad();
         llenarInstalacion();
         m = (DefaultTableModel)tblAct.getModel();
+        pnlCrearGrupo.setVisible(true);
+
         // Suponiendo que tienes un botón llamado "btnBorrar"
         btnBorrarAct.addActionListener(new ActionListener() {
         @Override
@@ -444,6 +447,10 @@ public class Admin extends javax.swing.JFrame {
         fondo = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         barraArriba2 = new Componentes.BarraArriba();
+        pnlGrupos = new javax.swing.JPanel();
+        btnBorrarAct = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAct = new javax.swing.JTable();
         contenido = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblTigre1 = new javax.swing.JLabel();
@@ -453,10 +460,15 @@ public class Admin extends javax.swing.JFrame {
         lblVerGrupo = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         in = new javax.swing.JPanel();
-        pnlGrupos = new javax.swing.JPanel();
-        btnBorrarAct = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAct = new javax.swing.JTable();
+        pnlAdd = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JTextField();
+        TxtDescripcion1 = new javax.swing.JTextField();
+        CmbCreditos1 = new javax.swing.JComboBox<>();
+        btnAgregaract1 = new javax.swing.JButton();
+        btnCancelarGru = new javax.swing.JButton();
         pnlCrearGrupo = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -470,15 +482,6 @@ public class Admin extends javax.swing.JFrame {
         txtCapacidad1 = new javax.swing.JTextField();
         btnGrupo1 = new javax.swing.JButton();
         btnCancelarAct = new javax.swing.JButton();
-        pnlAdd = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
-        TxtDescripcion1 = new javax.swing.JTextField();
-        CmbCreditos1 = new javax.swing.JComboBox<>();
-        btnAgregaract1 = new javax.swing.JButton();
-        btnCancelarGru = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel10.setText("Bienvenido Administrativo");
@@ -710,6 +713,28 @@ public class Admin extends javax.swing.JFrame {
         fondo.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 115, -1, -1));
         fondo.add(barraArriba2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
+        pnlGrupos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlGrupos.setLayout(null);
+
+        btnBorrarAct.setText("Borrar");
+        pnlGrupos.add(btnBorrarAct);
+        btnBorrarAct.setBounds(-31776, -32300, 75, 23);
+
+        tblAct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblAct);
+
+        pnlGrupos.add(jScrollPane1);
+        jScrollPane1.setBounds(850, 170, 381, 244);
+
+        fondo.add(pnlGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 240));
+
         contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setLayout(null);
 
@@ -776,26 +801,50 @@ public class Admin extends javax.swing.JFrame {
 
         in.setBackground(new java.awt.Color(255, 255, 255));
         in.setLayout(null);
+        contenido.add(in);
+        in.setBounds(370, 140, 510, 470);
 
-        pnlGrupos.setBackground(new java.awt.Color(255, 255, 255));
-        pnlGrupos.setLayout(null);
+        pnlAdd.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
+        pnlAdd.setLayout(null);
 
-        btnBorrarAct.setText("Borrar");
-        pnlGrupos.add(btnBorrarAct);
-        btnBorrarAct.setBounds(-31776, -32300, 75, 23);
+        jLabel20.setText("Nombre Actividad ");
+        pnlAdd.add(jLabel20);
+        jLabel20.setBounds(0, 0, 0, 0);
 
-        tblAct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel21.setText("Descripcion ");
+        pnlAdd.add(jLabel21);
+        jLabel21.setBounds(0, 0, 0, 0);
 
-            },
-            new String [] {
+        jLabel22.setText("Tipo de Credito ");
+        pnlAdd.add(jLabel22);
+        jLabel22.setBounds(0, 0, 0, 0);
 
-            }
-        ));
-        jScrollPane1.setViewportView(tblAct);
+        txtNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlAdd.add(txtNombre1);
+        txtNombre1.setBounds(0, 0, 0, 0);
 
-        pnlGrupos.add(jScrollPane1);
-        jScrollPane1.setBounds(850, 170, 381, 244);
+        TxtDescripcion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlAdd.add(TxtDescripcion1);
+        TxtDescripcion1.setBounds(0, 0, 0, 0);
+
+        CmbCreditos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        CmbCreditos1.setBorder(null);
+        pnlAdd.add(CmbCreditos1);
+        CmbCreditos1.setBounds(0, 0, 0, 0);
+
+        btnAgregaract1.setText("Agregar");
+        btnAgregaract1.setBorder(null);
+        pnlAdd.add(btnAgregaract1);
+        btnAgregaract1.setBounds(0, 0, 0, 0);
+
+        btnCancelarGru.setText("Cancelar");
+        btnCancelarGru.setBorder(null);
+        pnlAdd.add(btnCancelarGru);
+        btnCancelarGru.setBounds(0, 0, 0, 0);
+
+        contenido.add(pnlAdd);
+        pnlAdd.setBounds(880, 190, 430, 340);
 
         pnlCrearGrupo.setBackground(new java.awt.Color(255, 255, 255));
         pnlCrearGrupo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
@@ -856,56 +905,8 @@ public class Admin extends javax.swing.JFrame {
         pnlCrearGrupo.add(btnCancelarAct);
         btnCancelarAct.setBounds(170, 210, 60, 16);
 
-        pnlAdd.setBackground(new java.awt.Color(255, 255, 255));
-        pnlAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
-        pnlAdd.setLayout(null);
-
-        jLabel20.setText("Nombre Actividad ");
-        pnlAdd.add(jLabel20);
-        jLabel20.setBounds(0, 0, 0, 0);
-
-        jLabel21.setText("Descripcion ");
-        pnlAdd.add(jLabel21);
-        jLabel21.setBounds(0, 0, 0, 0);
-
-        jLabel22.setText("Tipo de Credito ");
-        pnlAdd.add(jLabel22);
-        jLabel22.setBounds(0, 0, 0, 0);
-
-        txtNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlAdd.add(txtNombre1);
-        txtNombre1.setBounds(0, 0, 0, 0);
-
-        TxtDescripcion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlAdd.add(TxtDescripcion1);
-        TxtDescripcion1.setBounds(0, 0, 0, 0);
-
-        CmbCreditos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        CmbCreditos1.setBorder(null);
-        pnlAdd.add(CmbCreditos1);
-        CmbCreditos1.setBounds(0, 0, 0, 0);
-
-        btnAgregaract1.setText("Agregar");
-        btnAgregaract1.setBorder(null);
-        pnlAdd.add(btnAgregaract1);
-        btnAgregaract1.setBounds(0, 0, 0, 0);
-
-        btnCancelarGru.setText("Cancelar");
-        btnCancelarGru.setBorder(null);
-        pnlAdd.add(btnCancelarGru);
-        btnCancelarGru.setBounds(0, 0, 0, 0);
-
-        pnlCrearGrupo.add(pnlAdd);
-        pnlAdd.setBounds(30, 50, 430, 340);
-
-        pnlGrupos.add(pnlCrearGrupo);
-        pnlCrearGrupo.setBounds(30, -130, 430, 340);
-
-        in.add(pnlGrupos);
-        pnlGrupos.setBounds(10, 180, 460, 340);
-
-        contenido.add(in);
-        in.setBounds(370, 140, 510, 470);
+        contenido.add(pnlCrearGrupo);
+        pnlCrearGrupo.setBounds(40, 180, 430, 340);
 
         fondo.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1380, 740));
 

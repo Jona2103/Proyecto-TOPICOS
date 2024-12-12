@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JTextField;
 
 /**
  *
@@ -32,6 +33,12 @@ public class Login extends javax.swing.JFrame {
     int cont=0;
     private Connection con;
     private Statement stm;
+
+    public JTextField getTxtNc() {
+        return txtNc;
+    }
+    
+    
     
     public void Conectar(){
         
@@ -94,7 +101,9 @@ public class Login extends javax.swing.JFrame {
             if(r.next()){
             if (s.charAt(0) == '2') {
                 showMessageDialog(null, "Correcto, es estudiante");
-                dispose();    
+                dispose(); 
+                Inicio A = new Inicio();
+                A.setVisible(true);
 
             } else {
             if(s.charAt(0) == '3'){
