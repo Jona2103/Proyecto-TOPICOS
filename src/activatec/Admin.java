@@ -457,15 +457,6 @@ public class Admin extends javax.swing.JFrame {
         btnBorrarAct = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAct = new javax.swing.JTable();
-        pnlAdd = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
-        TxtDescripcion1 = new javax.swing.JTextField();
-        CmbCreditos1 = new javax.swing.JComboBox<>();
-        btnAgregaract1 = new javax.swing.JButton();
-        btnCancelarGru = new javax.swing.JButton();
         pnlCrearGrupo = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -479,6 +470,15 @@ public class Admin extends javax.swing.JFrame {
         txtCapacidad1 = new javax.swing.JTextField();
         btnGrupo1 = new javax.swing.JButton();
         btnCancelarAct = new javax.swing.JButton();
+        pnlAdd = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JTextField();
+        TxtDescripcion1 = new javax.swing.JTextField();
+        CmbCreditos1 = new javax.swing.JComboBox<>();
+        btnAgregaract1 = new javax.swing.JButton();
+        btnCancelarGru = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel10.setText("Bienvenido Administrativo");
@@ -702,7 +702,6 @@ public class Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         fondo.setBackground(new java.awt.Color(255, 255, 255));
         fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -758,13 +757,12 @@ public class Admin extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTigre1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblCrearGrup)
-                                    .addComponent(lblAddAct)
-                                    .addComponent(lblVerGrupo))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblCrearGrup)
+                                        .addComponent(lblAddAct)
+                                        .addComponent(lblVerGrupo))
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(34, 34, 34))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -774,7 +772,7 @@ public class Admin extends javax.swing.JFrame {
         );
 
         contenido.add(jPanel3);
-        jPanel3.setBounds(0, 0, 1072, 120);
+        jPanel3.setBounds(0, 0, 1061, 120);
 
         in.setBackground(new java.awt.Color(255, 255, 255));
         in.setLayout(null);
@@ -798,6 +796,65 @@ public class Admin extends javax.swing.JFrame {
 
         pnlGrupos.add(jScrollPane1);
         jScrollPane1.setBounds(850, 170, 381, 244);
+
+        pnlCrearGrupo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCrearGrupo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
+        pnlCrearGrupo.setToolTipText("");
+        pnlCrearGrupo.setLayout(null);
+
+        jLabel13.setText("Horario");
+        pnlCrearGrupo.add(jLabel13);
+        jLabel13.setBounds(170, 23, 40, 16);
+
+        jLabel14.setText("Actividad");
+        pnlCrearGrupo.add(jLabel14);
+        jLabel14.setBounds(170, 63, 93, 16);
+
+        jLabel15.setText("Intructor");
+        pnlCrearGrupo.add(jLabel15);
+        jLabel15.setBounds(170, 103, 75, 16);
+
+        jLabel16.setText("Instalacion");
+        pnlCrearGrupo.add(jLabel16);
+        jLabel16.setBounds(170, 179, 75, 16);
+
+        jLabel17.setText("Capacidad");
+        pnlCrearGrupo.add(jLabel17);
+        jLabel17.setBounds(170, 141, 56, 16);
+
+        cmbHorario1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "08hrs-10hrs", "17hrs-19hrs", "19hrs-21hrs" }));
+        cmbHorario1.setBorder(null);
+        pnlCrearGrupo.add(cmbHorario1);
+        cmbHorario1.setBounds(269, 20, 93, 20);
+
+        cmbActividad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbActividad1.setBorder(null);
+        pnlCrearGrupo.add(cmbActividad1);
+        cmbActividad1.setBounds(269, 60, 88, 20);
+
+        cmbInstructor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbInstructor1.setBorder(null);
+        pnlCrearGrupo.add(cmbInstructor1);
+        cmbInstructor1.setBounds(269, 100, 88, 20);
+
+        cmbInstalacion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbInstalacion1.setBorder(null);
+        pnlCrearGrupo.add(cmbInstalacion1);
+        cmbInstalacion1.setBounds(269, 176, 88, 20);
+
+        txtCapacidad1.setBorder(null);
+        pnlCrearGrupo.add(txtCapacidad1);
+        txtCapacidad1.setBounds(269, 140, 90, 16);
+
+        btnGrupo1.setText("Agregar");
+        btnGrupo1.setBorder(null);
+        pnlCrearGrupo.add(btnGrupo1);
+        btnGrupo1.setBounds(300, 210, 60, 16);
+
+        btnCancelarAct.setText("Cancelar");
+        btnCancelarAct.setBorder(null);
+        pnlCrearGrupo.add(btnCancelarAct);
+        btnCancelarAct.setBounds(170, 210, 60, 16);
 
         pnlAdd.setBackground(new java.awt.Color(255, 255, 255));
         pnlAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
@@ -838,67 +895,8 @@ public class Admin extends javax.swing.JFrame {
         pnlAdd.add(btnCancelarGru);
         btnCancelarGru.setBounds(0, 0, 0, 0);
 
-        pnlGrupos.add(pnlAdd);
-        pnlAdd.setBounds(30, -100, 430, 340);
-
-        pnlCrearGrupo.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCrearGrupo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
-        pnlCrearGrupo.setToolTipText("");
-        pnlCrearGrupo.setLayout(null);
-
-        jLabel13.setText("Horario");
-        pnlCrearGrupo.add(jLabel13);
-        jLabel13.setBounds(170, 23, 41, 16);
-
-        jLabel14.setText("Actividad");
-        pnlCrearGrupo.add(jLabel14);
-        jLabel14.setBounds(170, 63, 93, 16);
-
-        jLabel15.setText("Intructor");
-        pnlCrearGrupo.add(jLabel15);
-        jLabel15.setBounds(170, 103, 75, 16);
-
-        jLabel16.setText("Instalacion");
-        pnlCrearGrupo.add(jLabel16);
-        jLabel16.setBounds(170, 179, 75, 16);
-
-        jLabel17.setText("Capacidad");
-        pnlCrearGrupo.add(jLabel17);
-        jLabel17.setBounds(170, 141, 57, 16);
-
-        cmbHorario1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "08hrs-10hrs", "17hrs-19hrs", "19hrs-21hrs" }));
-        cmbHorario1.setBorder(null);
-        pnlCrearGrupo.add(cmbHorario1);
-        cmbHorario1.setBounds(269, 20, 93, 20);
-
-        cmbActividad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbActividad1.setBorder(null);
-        pnlCrearGrupo.add(cmbActividad1);
-        cmbActividad1.setBounds(269, 60, 89, 20);
-
-        cmbInstructor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbInstructor1.setBorder(null);
-        pnlCrearGrupo.add(cmbInstructor1);
-        cmbInstructor1.setBounds(269, 100, 89, 20);
-
-        cmbInstalacion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbInstalacion1.setBorder(null);
-        pnlCrearGrupo.add(cmbInstalacion1);
-        cmbInstalacion1.setBounds(269, 176, 89, 20);
-
-        txtCapacidad1.setBorder(null);
-        pnlCrearGrupo.add(txtCapacidad1);
-        txtCapacidad1.setBounds(269, 140, 90, 16);
-
-        btnGrupo1.setText("Agregar");
-        btnGrupo1.setBorder(null);
-        pnlCrearGrupo.add(btnGrupo1);
-        btnGrupo1.setBounds(300, 210, 60, 16);
-
-        btnCancelarAct.setText("Cancelar");
-        btnCancelarAct.setBorder(null);
-        pnlCrearGrupo.add(btnCancelarAct);
-        btnCancelarAct.setBounds(170, 210, 60, 16);
+        pnlCrearGrupo.add(pnlAdd);
+        pnlAdd.setBounds(30, 50, 430, 340);
 
         pnlGrupos.add(pnlCrearGrupo);
         pnlCrearGrupo.setBounds(30, -130, 430, 340);
