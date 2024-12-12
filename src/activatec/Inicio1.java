@@ -42,7 +42,6 @@ public class Inicio1 extends javax.swing.JFrame {
         initComponents();
         barraArriba1.setParentFrame(this);
         panelAjustes.setVisible(false);
-        panelIdioma.setVisible(false);
 
                 
         iconConfig.addMouseListener(new MouseListener() {
@@ -50,11 +49,9 @@ public class Inicio1 extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (esVisible) {
                     panelAjustes.setVisible(false);
-                    panelIdioma.setVisible(false);
                     esVisible = false;
                 } else {
                     panelAjustes.setVisible(true);
-                    panelIdioma.setVisible(false);
                     esVisible = true;
                 }
             }
@@ -71,65 +68,8 @@ public class Inicio1 extends javax.swing.JFrame {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
-        
-        lblidioma.addMouseListener(new MouseInputListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (esVisible) {
-                    panelIdioma.setVisible(false);
-                    esVisible = false;
-                } else {
-                    panelIdioma.setVisible(true);
-                    esVisible = true;
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-
-            @Override
-            public void mouseExited(MouseEvent e) {}
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-
-            @Override
-            public void mouseMoved(MouseEvent e) {}
-        });
-        
-            
-        /*apilar = new CardLayout();
-        contenedor = new JPanel(apilar);
-        add(contenedor,BorderLayout.CENTER);
-        
-        contenedor.add(Carrusel1,"Panel 1");
-        contenedor.add(Carrusel3,"Panel 3");
-        
-        new Thread(new CarouselRunnable()).start();
-        setVisible(true);*/
     }
     
-    /*private class CarouselRunnable implements Runnable {
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    Thread.sleep(2000);  
-                    contador = (contador + 1) % 3; 
-                    apilar.show(contenedor, "Panel " + (contador + 1));  
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
-    }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,18 +82,17 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo = new javax.swing.JPanel();
         iconConfig = new javax.swing.JLabel();
         panelAjustes = new PanelRedondo(65);
-        jLabel5 = new javax.swing.JLabel();
+        salir = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
+        modoNigth = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         barraArriba1 = new Componentes.BarraArriba();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new PanelRedondo(100);
+        tigerGrande = new javax.swing.JLabel();
         jPanel8 = new PanelRedondo(100);
         jPanel9 = new PanelRedondo(100);
         lblTigre = new javax.swing.JLabel();
         jPanel11 = new PanelRedondo(100);
-        jPanel13 = new PanelRedondo(100);
+        panelCarrusel = new PanelRedondo(100);
         jLabel2 = new javax.swing.JLabel();
         Carrusel4 = new PanelRedondo(100);
         Carrusel5 = new PanelRedondo(100);
@@ -181,13 +120,13 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(iconConfig);
         iconConfig.setBounds(1280, 40, 50, 48);
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Salir");
+        salir.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salir.setText("Salir");
 
-        jLabel7.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Modo Noche");
+        modoNigth.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        modoNigth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modoNigth.setText("Modo Noche");
 
         javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
         panelAjustes.setLayout(panelAjustesLayout);
@@ -199,10 +138,10 @@ public class Inicio1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAjustesLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addComponent(modoNigth, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                         .addGap(13, 13, 13))
                     .addGroup(panelAjustesLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelAjustesLayout.setVerticalGroup(
@@ -211,11 +150,11 @@ public class Inicio1 extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(modoNigth)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(salir)
                 .addGap(18, 18, 18))
         );
 
@@ -224,25 +163,9 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
-        fondo.add(jLabel1);
-        jLabel1.setBounds(400, 90, 500, 500);
-
-        jPanel1.setMinimumSize(new java.awt.Dimension(62, 64));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
-        );
-
-        fondo.add(jPanel1);
-        jPanel1.setBounds(1260, 180, 62, 64);
+        tigerGrande.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
+        fondo.add(tigerGrande);
+        tigerGrande.setBounds(400, 90, 500, 500);
 
         jPanel8.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel8.setPreferredSize(new java.awt.Dimension(62, 64));
@@ -259,7 +182,7 @@ public class Inicio1 extends javax.swing.JFrame {
         );
 
         fondo.add(jPanel8);
-        jPanel8.setBounds(1260, 280, 62, 64);
+        jPanel8.setBounds(1260, 260, 62, 64);
 
         jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel9.setPreferredSize(new java.awt.Dimension(62, 64));
@@ -276,7 +199,7 @@ public class Inicio1 extends javax.swing.JFrame {
         );
 
         fondo.add(jPanel9);
-        jPanel9.setBounds(1260, 380, 62, 64);
+        jPanel9.setBounds(1260, 360, 62, 64);
 
         lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
         fondo.add(lblTigre);
@@ -298,26 +221,26 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel11);
         jPanel11.setBounds(950, 430, 260, 120);
 
-        jPanel13.setMinimumSize(new java.awt.Dimension(62, 64));
+        panelCarrusel.setMinimumSize(new java.awt.Dimension(62, 64));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torneo (2).jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelCarruselLayout = new javax.swing.GroupLayout(panelCarrusel);
+        panelCarrusel.setLayout(panelCarruselLayout);
+        panelCarruselLayout.setHorizontalGroup(
+            panelCarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCarruselLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelCarruselLayout.setVerticalGroup(
+            panelCarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        fondo.add(jPanel13);
-        jPanel13.setBounds(50, 110, 320, 430);
+        fondo.add(panelCarrusel);
+        panelCarrusel.setBounds(50, 110, 320, 430);
 
         Carrusel4.setBackground(new java.awt.Color(255, 255, 255));
         Carrusel4.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -429,22 +352,21 @@ public class Inicio1 extends javax.swing.JFrame {
     private Componentes.BarraArriba barraArriba1;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel iconConfig;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTigre;
+    private javax.swing.JLabel modoNigth;
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelActividades1;
     private javax.swing.JPanel panelActividades2;
     private javax.swing.JPanel panelAjustes;
+    private javax.swing.JPanel panelCarrusel;
+    private javax.swing.JLabel salir;
+    private javax.swing.JLabel tigerGrande;
     // End of variables declaration//GEN-END:variables
 }
