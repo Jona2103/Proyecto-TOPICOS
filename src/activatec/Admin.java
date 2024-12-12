@@ -144,7 +144,7 @@ Agregar.addMouseListener(new MouseAdapter() {
             String tipo = ""; int id = 0;
             while(res.next()){
                 id = res.getInt("CreditoID"); tipo = res.getString("Tipo");
-                CmbCreditos.addItem(id+"-"+tipo);
+                CmbCreditos1.addItem(id+"-"+tipo);
             }
             
             
@@ -164,7 +164,7 @@ Agregar.addMouseListener(new MouseAdapter() {
             String nam = ""; int id=0;
             while(res.next()){
                 id = res.getInt("PersonaID"); nam = res.getString("Nombre");
-                cmbInstructor.addItem(id+"-"+nam);
+                cmbInstructor1.addItem(id+"-"+nam);
             }
             
             
@@ -182,7 +182,7 @@ Agregar.addMouseListener(new MouseAdapter() {
             String nam = ""; int id=0;
             while(res.next()){
                 nam = res.getString("Nombre"); id = res.getInt("ActividadID");
-                cmbActividad.addItem(id+"-"+nam);
+                cmbActividad1.addItem(id+"-"+nam);
             }
             
             
@@ -194,23 +194,23 @@ Agregar.addMouseListener(new MouseAdapter() {
     
     public void insertarGrupo(){
         
-        String tC = cmbHorario.getSelectedItem().toString();
+        String tC = cmbHorario1.getSelectedItem().toString();
         
         
-        String iC = cmbInstalacion.getSelectedItem().toString();
+        String iC = cmbInstalacion1.getSelectedItem().toString();
         String[] I = iC.split("-");
         String ic = I[0]; 
         
-        String aC = cmbActividad.getSelectedItem().toString();
+        String aC = cmbActividad1.getSelectedItem().toString();
         String[] A = aC.split("-");
         String nc = A[0]; 
         
         
-        String inC = cmbInstructor.getSelectedItem().toString();
+        String inC = cmbInstructor1.getSelectedItem().toString();
         String[] IN = inC.split("-");
         String nin = IN[0]; 
         
-        int cap = Integer.parseInt(txtCapacidad.getText());
+        int cap = Integer.parseInt(txtCapacidad1.getText());
 
         PreparedStatement ps = null;
         try {
@@ -251,7 +251,7 @@ Agregar.addMouseListener(new MouseAdapter() {
             while(res.next()){
                 nam = res.getString("Nombre");
                 id = res.getInt("InstalacionID");
-                cmbInstalacion.addItem(id+"-"+nam);
+                cmbInstalacion1.addItem(id+"-"+nam);
             }
             
             
