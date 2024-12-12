@@ -101,24 +101,30 @@ public class Inicio1 extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fondo.setBackground(new java.awt.Color(245, 245, 245));
+        fondo.setBackground(new java.awt.Color(233, 233, 233));
         fondo.setToolTipText("");
         fondo.setMaximumSize(new java.awt.Dimension(62, 62));
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
 
-        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/config (3).png"))); // NOI18N
+        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Config_1.png"))); // NOI18N
         iconConfig.setText("jLabel3");
         fondo.add(iconConfig);
         iconConfig.setBounds(1280, 40, 50, 48);
+
+        panelAjustes.setBackground(new java.awt.Color(255, 255, 255));
 
         salir.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         salir.setText("Salir");
 
+        jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
+
         modoNigth.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         modoNigth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         modoNigth.setText("Modo Noche");
+
+        jSeparator3.setBackground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
         panelAjustes.setLayout(panelAjustesLayout);

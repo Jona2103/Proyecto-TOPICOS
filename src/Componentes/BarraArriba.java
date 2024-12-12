@@ -120,7 +120,7 @@ public class BarraArriba extends javax.swing.JPanel{
         setMaximumSize(new java.awt.Dimension(32767, 20));
         setPreferredSize(new java.awt.Dimension(1366, 20));
 
-        jPanel5.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel5.setBackground(new java.awt.Color(233, 233, 233));
 
         lblMax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btn Green.png"))); // NOI18N
         lblMax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
