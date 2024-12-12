@@ -72,6 +72,13 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         fondo = new javax.swing.JPanel();
+        Actividades = new PanelRedondo(30);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        contenido = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        lblNombre3 = new javax.swing.JLabel();
         iconConfig = new javax.swing.JLabel();
         panelAjustes = new PanelRedondo(65);
         salir = new javax.swing.JLabel();
@@ -83,6 +90,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel8 = new PanelRedondo(100);
         jLabel3 = new javax.swing.JLabel();
         jPanel9 = new PanelRedondo(100);
+        jLabel5 = new javax.swing.JLabel();
         lblTigre = new javax.swing.JLabel();
         jPanel11 = new PanelRedondo(100);
         panelCarrusel = new PanelRedondo(100);
@@ -107,6 +115,98 @@ public class Inicio extends javax.swing.JFrame {
         fondo.setMaximumSize(new java.awt.Dimension(62, 62));
         fondo.setMinimumSize(new java.awt.Dimension(62, 62));
         fondo.setLayout(null);
+
+        Actividades.setBackground(new java.awt.Color(255, 255, 255));
+
+        contenido.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
+        contenido.setLayout(contenidoLayout);
+        contenidoLayout.setHorizontalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
+        );
+        contenidoLayout.setVerticalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(608, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(contenido);
+
+        lblNombre3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre3.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre3.setText("Mis Actividades");
+
+        javax.swing.GroupLayout ActividadesLayout = new javax.swing.GroupLayout(Actividades);
+        Actividades.setLayout(ActividadesLayout);
+        ActividadesLayout.setHorizontalGroup(
+            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ActividadesLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        ActividadesLayout.setVerticalGroup(
+            ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActividadesLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
+        );
+
+        fondo.add(Actividades);
+        Actividades.setBounds(290, 40, 840, 660);
 
         iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configNegro.png"))); // NOI18N
         iconConfig.setText("jLabel3");
@@ -194,19 +294,24 @@ public class Inicio extends javax.swing.JFrame {
         jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel9.setPreferredSize(new java.awt.Dimension(62, 64));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tecnmB.png"))); // NOI18N
+        jLabel5.setMinimumSize(new java.awt.Dimension(0, 0));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         fondo.add(jPanel9);
-        jPanel9.setBounds(1260, 330, 62, 64);
+        jPanel9.setBounds(1260, 330, 62, 60);
 
         lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
         fondo.add(lblTigre);
@@ -295,7 +400,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         fondo.add(panelActividades);
-        panelActividades.setBounds(40, 590, 380, 160);
+        panelActividades.setBounds(240, 590, 380, 160);
 
         panelActividades1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -328,7 +433,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         fondo.add(panelActividades1);
-        panelActividades1.setBounds(450, 590, 440, 160);
+        panelActividades1.setBounds(650, 590, 440, 160);
 
         lblNombre1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
@@ -381,23 +486,31 @@ public class Inicio extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Actividades;
     private javax.swing.JPanel Carrusel4;
     private javax.swing.JPanel Carrusel5;
     private Componentes.BarraArriba barraArriba1;
+    private javax.swing.JPanel contenido;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblNombre2;
+    private javax.swing.JLabel lblNombre3;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JLabel modoNigth;
     private javax.swing.JPanel panelActividades;
