@@ -4,11 +4,26 @@
  */
 package activatec;
 
+
 import Componentes.MenuDesplegable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
-
+import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
  * @author Jonathan Viera
@@ -20,11 +35,29 @@ public class Administrador extends javax.swing.JFrame {
      */
     
     private JFrame ventana;
-
+    private Connection con;
+    private Statement stm;
+    
+    public void Conectar(){
+        
+        String url = "jdbc:sqlserver://OswaldoDiaz:1433;databaseName=TAP;encrypt=true;trustServerCertificate=true;";
+        
+        try {
+            con = DriverManager.getConnection(url, "UsuarioTAP", "123");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al conectar");
+        }
+        System.out.println("Conexión exitosa");
+    }
+    
     
     public Administrador() {
         initComponents();
+        Conectar();
+        llenarTipoCredito();
         barraArriba1.setParentFrame(this);
+        btnAgregaract.addActionListener(new Interna());
         CrearGrupo.setVisible(false);
 Añadir.setVisible(false);
 
@@ -46,6 +79,67 @@ Agregar.addMouseListener(new MouseAdapter() {
         CrearGrupo.setVisible(false); // Ocultar el panel CrearGrupo
     }
 });
+
+
+    }
+    
+    class Interna implements ActionListener {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String nombre = txtNombre.getText();
+        String desc = TxtDescripcion.getText();
+        String tC = CmbCreditos.getSelectedItem().toString();
+        String[] C = tC.split("-");
+        String nc = C[0]; // CreditoID
+
+        PreparedStatement ps = null;
+        try {
+            String query = "INSERT INTO ActividadExtraescolar (Nombre, Descripcion, CreditoID) VALUES (?, ?, ?)";
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, nombre); 
+            ps.setString(2, desc);   
+            ps.setInt(3, Integer.parseInt(nc));
+
+            int filasInsertadas = ps.executeUpdate();
+            if (filasInsertadas > 0) {
+                System.out.println("Registro insertado correctamente.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException closeEx) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, closeEx);
+                }
+            }
+        }
+    }
+}
+
+
+    
+    
+    public void llenarTipoCredito(){
+        try {
+            stm = con.createStatement();
+            String query = "SELECT * FROM Credito";
+            ResultSet res = stm.executeQuery(query);
+            String tipo = ""; int id = 0;
+            while(res.next()){
+                id = res.getInt("CreditoID"); tipo = res.getString("Tipo");
+                CmbCreditos.addItem(id+"-"+tipo);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
     
     /**
@@ -71,9 +165,10 @@ Agregar.addMouseListener(new MouseAdapter() {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        TxtHorario = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         TxtDescripcion = new javax.swing.JTextField();
         CmbCreditos = new javax.swing.JComboBox<>();
+        btnAgregaract = new javax.swing.JButton();
         CrearGrupo = new javax.swing.JPanel();
         Horario = new javax.swing.JTextField();
         Descripcion = new javax.swing.JTextField();
@@ -161,6 +256,8 @@ Agregar.addMouseListener(new MouseAdapter() {
 
         CmbCreditos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
 
+        btnAgregaract.setText("Agregar");
+
         javax.swing.GroupLayout AñadirLayout = new javax.swing.GroupLayout(Añadir);
         Añadir.setLayout(AñadirLayout);
         AñadirLayout.setHorizontalGroup(
@@ -171,7 +268,7 @@ Agregar.addMouseListener(new MouseAdapter() {
                     .addGroup(AñadirLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(TxtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AñadirLayout.createSequentialGroup()
                         .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,7 +276,9 @@ Agregar.addMouseListener(new MouseAdapter() {
                         .addGap(18, 18, 18)
                         .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CmbCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnAgregaract)
+                                .addComponent(CmbCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         AñadirLayout.setVerticalGroup(
@@ -188,7 +287,7 @@ Agregar.addMouseListener(new MouseAdapter() {
                 .addGap(41, 41, 41)
                 .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TxtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AñadirLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -200,7 +299,9 @@ Agregar.addMouseListener(new MouseAdapter() {
                         .addGroup(AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(CmbCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregaract)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jLabel4.setText("Horario");
@@ -362,8 +463,8 @@ Agregar.addMouseListener(new MouseAdapter() {
     private javax.swing.JTextField Persona;
     private javax.swing.JTextField TipCredito1;
     private javax.swing.JTextField TxtDescripcion;
-    private javax.swing.JTextField TxtHorario;
     private Componentes.BarraArriba barraArriba1;
+    private javax.swing.JButton btnAgregaract;
     private javax.swing.JLabel flechaPaAbajo;
     private javax.swing.JLabel iconBuscar;
     private javax.swing.JLabel jLabel1;
@@ -378,5 +479,6 @@ Agregar.addMouseListener(new MouseAdapter() {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNovedades;
     private javax.swing.JLabel lblTigre;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
