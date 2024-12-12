@@ -415,7 +415,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblNombre1">
+        <Component class="javax.swing.JLabel" name="lblNombreAjuste">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SF Pro Display" size="12" style="1"/>

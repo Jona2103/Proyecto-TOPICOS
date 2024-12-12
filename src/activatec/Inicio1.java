@@ -7,6 +7,10 @@ import CodigosPersonalizados.*;
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,19 +28,41 @@ public class Inicio1 extends javax.swing.JFrame {
     private JPanel contenedor;
     private int contador=0;
     private CardLayout apilar;
-
+    private boolean esVisible = false;
+    
+    private Connection con;
+    private Statement stm;
+    
+    public void Conectar(){
+        
+        String url = "jdbc:sqlserver://OswaldoDiaz:1433;databaseName=TAP;encrypt=true;trustServerCertificate=true;";
+        
+        try {
+            con = DriverManager.getConnection(url, "UsuarioTAP", "123");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al conectar");
+        }
+        System.out.println("Conexión exitosa");
+    }
     
     public Inicio1() {
         initComponents();
+        Conectar();
         barraArriba1.setParentFrame(this);
+        panelAjustes.setVisible(false);
+        
+        lblNombreAjuste =
+        
         iconConfig.addMouseListener(new MouseListener() {
-            private boolean esVisible = false;
             @Override
             public void mouseClicked(MouseEvent e) {
-                
                 if (esVisible) {
-                    panelAjustes.setVisible(true);
+                    panelAjustes.setVisible(false);
+                    esVisible = false;
                 } else {
+                    panelAjustes.setVisible(true);
+                    esVisible = true;
                 }
             }
 
@@ -108,7 +134,7 @@ public class Inicio1 extends javax.swing.JFrame {
         panelActividades1 = new PanelRedondo(30);
         panelActividades2 = new PanelRedondo(30)
         ;
-        lblNombre1 = new javax.swing.JLabel();
+        lblNombreAjuste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -302,11 +328,11 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(panelActividades2);
         panelActividades2.setBounds(920, 590, 420, 160);
 
-        lblNombre1.setFont(new java.awt.Font("SF Pro Display", 1, 12)); // NOI18N
-        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombre1.setText("Nombre");
-        fondo.add(lblNombre1);
-        lblNombre1.setBounds(1090, 60, 140, 15);
+        lblNombreAjuste.setFont(new java.awt.Font("SF Pro Display", 1, 12)); // NOI18N
+        lblNombreAjuste.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNombreAjuste.setText("Nombre");
+        fondo.add(lblNombreAjuste);
+        lblNombreAjuste.setBounds(1090, 60, 140, 15);
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -363,7 +389,7 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombreAjuste;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JPanel panelActividades;
     private javax.swing.JPanel panelActividades1;
