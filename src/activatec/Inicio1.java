@@ -36,22 +36,9 @@ public class Inicio1 extends javax.swing.JFrame {
     private Connection con;
     private Statement stm;
     
-    public void Conectar(){
-        
-        String url = "jdbc:sqlserver://OswaldoDiaz:1433;databaseName=TAP;encrypt=true;trustServerCertificate=true;";
-        
-        try {
-            con = DriverManager.getConnection(url, "UsuarioTAP", "123");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Error al conectar");
-        }
-        System.out.println("Conexión exitosa");
-    }
     
     public Inicio1() {
         initComponents();
-        Conectar();
         barraArriba1.setParentFrame(this);
         panelAjustes.setVisible(false);
                 
@@ -119,9 +106,11 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo = new javax.swing.JPanel();
         iconConfig = new javax.swing.JLabel();
         panelAjustes = new PanelRedondo(65);
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
         barraArriba1 = new Componentes.BarraArriba();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new PanelRedondo(100);
@@ -158,43 +147,54 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(iconConfig);
         iconConfig.setBounds(1280, 40, 50, 48);
 
-        jLabel3.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("jLabel3");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel4.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("jLabel3");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel5.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Modo Noche");
 
         jLabel6.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("jLabel3");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setText("Idioma");
+
+        jLabel7.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Modo Noche");
 
         javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
         panelAjustes.setLayout(panelAjustesLayout);
         panelAjustesLayout.setHorizontalGroup(
             panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator3)
+            .addGroup(panelAjustesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAjustesLayout.createSequentialGroup()
+                        .addGroup(panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                        .addGap(13, 13, 13))
+                    .addGroup(panelAjustesLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelAjustesLayout.setVerticalGroup(
             panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAjustesLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel3)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel4)
-                .addGap(1, 1, 1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAjustesLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18))
         );
 
         fondo.add(panelAjustes);
-        panelAjustes.setBounds(1220, 40, 110, 150);
+        panelAjustes.setBounds(1200, 40, 130, 190);
         fondo.add(barraArriba1);
         barraArriba1.setBounds(0, 6, 1366, 20);
 
@@ -411,14 +411,16 @@ public class Inicio1 extends javax.swing.JFrame {
     private javax.swing.JLabel iconConfig;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombreAjuste;
     private javax.swing.JLabel lblTigre;

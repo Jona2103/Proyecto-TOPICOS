@@ -60,7 +60,7 @@ public class Admin extends javax.swing.JFrame {
         llenarInstructor();
         llenarActividad();
         llenarInstalacion();
-        barraArriba1.setParentFrame(this);
+        barraArriba2.setParentFrame(this);
         btnAgregaract.addActionListener(new Interna());
         CrearGrupo.setVisible(false);
         btnGrupo.addActionListener(
