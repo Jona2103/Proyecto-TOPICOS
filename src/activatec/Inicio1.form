@@ -163,6 +163,9 @@
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel8">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[62, 64]"/>
             </Property>
@@ -194,6 +197,9 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel9">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[62, 64]"/>
             </Property>
@@ -367,6 +373,11 @@
           </Constraints>
         </Component>
         <Container class="javax.swing.JPanel" name="panelActividades">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelRedondo(30)"/>
           </AuxValues>
@@ -390,6 +401,11 @@
           </Layout>
         </Container>
         <Container class="javax.swing.JPanel" name="panelActividades1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelRedondo(30)"/>
           </AuxValues>
@@ -413,6 +429,11 @@
           </Layout>
         </Container>
         <Container class="javax.swing.JPanel" name="panelActividades2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelRedondo(30)&#xa;"/>
           </AuxValues>

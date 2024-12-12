@@ -26,7 +26,6 @@ public class Inicio1 extends javax.swing.JFrame {
     private JPanel contenedor;
     private CardLayout apilar;
     private boolean esVisible = false;
-    
     private Connection con;
     private Statement stm;
     
@@ -160,6 +159,7 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(tigerGrande);
         tigerGrande.setBounds(400, 90, 500, 500);
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel8.setPreferredSize(new java.awt.Dimension(62, 64));
 
@@ -177,6 +177,7 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(jPanel8);
         jPanel8.setBounds(1260, 260, 62, 64);
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
         jPanel9.setPreferredSize(new java.awt.Dimension(62, 64));
 
@@ -256,6 +257,8 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(lblNombre);
         lblNombre.setBounds(160, 60, 140, 30);
 
+        panelActividades.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelActividadesLayout = new javax.swing.GroupLayout(panelActividades);
         panelActividades.setLayout(panelActividadesLayout);
         panelActividadesLayout.setHorizontalGroup(
@@ -270,6 +273,8 @@ public class Inicio1 extends javax.swing.JFrame {
         fondo.add(panelActividades);
         panelActividades.setBounds(40, 590, 380, 160);
 
+        panelActividades1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelActividades1Layout = new javax.swing.GroupLayout(panelActividades1);
         panelActividades1.setLayout(panelActividades1Layout);
         panelActividades1Layout.setHorizontalGroup(
@@ -283,6 +288,8 @@ public class Inicio1 extends javax.swing.JFrame {
 
         fondo.add(panelActividades1);
         panelActividades1.setBounds(450, 590, 440, 160);
+
+        panelActividades2.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelActividades2Layout = new javax.swing.GroupLayout(panelActividades2);
         panelActividades2.setLayout(panelActividades2Layout);
