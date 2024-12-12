@@ -3,8 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package activatec;
-
+import CodigosPersonalizados.*;
+import java.awt.CardLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,11 +23,43 @@ public class Inicio extends javax.swing.JFrame {
      */
     
     private JFrame ventana;
-
+    private JPanel contenedor;
+    private CardLayout apilar;
+    private boolean esVisible = false;
+    private Connection con;
+    private Statement stm;
+    
     
     public Inicio() {
         initComponents();
         barraArriba1.setParentFrame(this);
+        panelAjustes.setVisible(false);
+
+                
+        iconConfig.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (esVisible) {
+                    panelAjustes.setVisible(false);
+                    esVisible = false;
+                } else {
+                    panelAjustes.setVisible(true);
+                    esVisible = true;
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
     }
     
     /**
@@ -33,117 +71,273 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblTigre = new javax.swing.JLabel();
-        iconBuscar = new javax.swing.JLabel();
-        flechaPaAbajo = new javax.swing.JLabel();
-        lblInicio = new javax.swing.JLabel();
-        lblMisActividades = new javax.swing.JLabel();
-        lblNovedades = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        fondo = new javax.swing.JPanel();
+        iconConfig = new javax.swing.JLabel();
+        panelAjustes = new PanelRedondo(65);
+        salir = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        modoNigth = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
         barraArriba1 = new Componentes.BarraArriba();
+        tigerGrande = new javax.swing.JLabel();
+        jPanel8 = new PanelRedondo(100);
+        jLabel3 = new javax.swing.JLabel();
+        jPanel9 = new PanelRedondo(100);
+        lblTigre = new javax.swing.JLabel();
+        jPanel11 = new PanelRedondo(100);
+        panelCarrusel = new PanelRedondo(100);
+        jLabel2 = new javax.swing.JLabel();
+        Carrusel4 = new PanelRedondo(100);
+        Carrusel5 = new PanelRedondo(100);
+        panelActividades = new PanelRedondo(30);
+        lblNombre = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        panelActividades1 = new PanelRedondo(30);
+        lblNombre2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1366, 768));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        fondo.setBackground(new java.awt.Color(233, 233, 233));
+        fondo.setToolTipText("");
+        fondo.setMaximumSize(new java.awt.Dimension(62, 62));
+        fondo.setMinimumSize(new java.awt.Dimension(62, 62));
+        fondo.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        iconConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configNegro.png"))); // NOI18N
+        iconConfig.setText("jLabel3");
+        fondo.add(iconConfig);
+        iconConfig.setBounds(1280, 40, 50, 48);
+
+        panelAjustes.setBackground(new java.awt.Color(255, 255, 255));
+
+        salir.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        salir.setForeground(new java.awt.Color(0, 0, 0));
+        salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salir.setText("Salir");
+
+        jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
+
+        modoNigth.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        modoNigth.setForeground(new java.awt.Color(0, 0, 0));
+        modoNigth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modoNigth.setText("Modo Oscuro");
+
+        jSeparator3.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout panelAjustesLayout = new javax.swing.GroupLayout(panelAjustes);
+        panelAjustes.setLayout(panelAjustesLayout);
+        panelAjustesLayout.setHorizontalGroup(
+            panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator3)
+            .addGroup(panelAjustesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAjustesLayout.createSequentialGroup()
+                        .addComponent(modoNigth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13))
+                    .addGroup(panelAjustesLayout.createSequentialGroup()
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        panelAjustesLayout.setVerticalGroup(
+            panelAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAjustesLayout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modoNigth)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(salir)
+                .addGap(18, 18, 18))
+        );
+
+        fondo.add(panelAjustes);
+        panelAjustes.setBounds(1200, 40, 130, 160);
+        fondo.add(barraArriba1);
+        barraArriba1.setBounds(0, 6, 1366, 20);
+
+        tigerGrande.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreGrande.png"))); // NOI18N
+        fondo.add(tigerGrande);
+        tigerGrande.setBounds(400, 90, 500, 500);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setMinimumSize(new java.awt.Dimension(62, 64));
+        jPanel8.setPreferredSize(new java.awt.Dimension(62, 64));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tpc-m (1).png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3))
+        );
+
+        fondo.add(jPanel8);
+        jPanel8.setBounds(1260, 240, 60, 60);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setMinimumSize(new java.awt.Dimension(62, 64));
+        jPanel9.setPreferredSize(new java.awt.Dimension(62, 64));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 62, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+        );
+
+        fondo.add(jPanel9);
+        jPanel9.setBounds(1260, 330, 62, 64);
 
         lblTigre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
+        fondo.add(lblTigre);
+        lblTigre.setBounds(80, 50, 70, 76);
 
-        iconBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa3.png"))); // NOI18N
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        flechaPaAbajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flechaPaAbajo.png"))); // NOI18N
-
-        lblInicio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblInicio.setForeground(new java.awt.Color(0, 0, 0));
-        lblInicio.setText("Inicio");
-
-        lblMisActividades.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblMisActividades.setForeground(new java.awt.Color(0, 0, 0));
-        lblMisActividades.setText("Mis Actividades");
-
-        lblNovedades.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblNovedades.setForeground(new java.awt.Color(0, 0, 0));
-        lblNovedades.setText("Novedades");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notfayer_1.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblTigre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(flechaPaAbajo)
-                .addGap(102, 102, 102)
-                .addComponent(lblInicio)
-                .addGap(45, 45, 45)
-                .addComponent(lblMisActividades)
-                .addGap(41, 41, 41)
-                .addComponent(lblNovedades)
-                .addGap(191, 191, 191)
-                .addComponent(iconBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 534, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(49, 49, 49))
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTigre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(flechaPaAbajo)
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblInicio)
-                            .addComponent(lblMisActividades)
-                            .addComponent(lblNovedades))
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(iconBuscar))
-                        .addGap(26, 26, 26)))
-                .addGap(24, 24, 24))
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        fondo.add(jPanel11);
+        jPanel11.setBounds(950, 430, 260, 120);
+
+        panelCarrusel.setMinimumSize(new java.awt.Dimension(62, 64));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torneo (2).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout panelCarruselLayout = new javax.swing.GroupLayout(panelCarrusel);
+        panelCarrusel.setLayout(panelCarruselLayout);
+        panelCarruselLayout.setHorizontalGroup(
+            panelCarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCarruselLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(barraArriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(645, Short.MAX_VALUE))
+        panelCarruselLayout.setVerticalGroup(
+            panelCarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        fondo.add(panelCarrusel);
+        panelCarrusel.setBounds(50, 110, 320, 430);
+
+        Carrusel4.setBackground(new java.awt.Color(255, 255, 255));
+        Carrusel4.setMinimumSize(new java.awt.Dimension(1366, 768));
+        Carrusel4.setName(""); // NOI18N
+        Carrusel4.setLayout(null);
+
+        Carrusel5.setBackground(new java.awt.Color(255, 255, 255));
+        Carrusel5.setMinimumSize(new java.awt.Dimension(1366, 768));
+        Carrusel5.setName(""); // NOI18N
+        Carrusel5.setLayout(null);
+        Carrusel4.add(Carrusel5);
+        Carrusel5.setBounds(950, 120, 260, 280);
+
+        fondo.add(Carrusel4);
+        Carrusel4.setBounds(950, 120, 260, 280);
+
+        panelActividades.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNombre.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre.setText("Mis Actividades");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/zoom.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelActividadesLayout = new javax.swing.GroupLayout(panelActividades);
+        panelActividades.setLayout(panelActividadesLayout);
+        panelActividadesLayout.setHorizontalGroup(
+            panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelActividadesLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(14, 14, 14))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panelActividadesLayout.setVerticalGroup(
+            panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelActividadesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
+
+        fondo.add(panelActividades);
+        panelActividades.setBounds(40, 590, 380, 160);
+
+        panelActividades1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNombre2.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        lblNombre2.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre2.setText("Actividades Disponibles");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/zoom.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelActividades1Layout = new javax.swing.GroupLayout(panelActividades1);
+        panelActividades1.setLayout(panelActividades1Layout);
+        panelActividades1Layout.setHorizontalGroup(
+            panelActividades1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelActividades1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(15, 15, 15))
+        );
+        panelActividades1Layout.setVerticalGroup(
+            panelActividades1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelActividades1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelActividades1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(lblNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
+        fondo.add(panelActividades1);
+        panelActividades1.setBounds(450, 590, 440, 160);
+
+        lblNombre1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
+        lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre1.setText("Avisos");
+        fondo.add(lblNombre1);
+        lblNombre1.setBounds(160, 60, 140, 30);
+
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,8 +368,10 @@ public class Inicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicio().setVisible(true);
@@ -183,16 +379,32 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Carrusel4;
+    private javax.swing.JPanel Carrusel5;
     private Componentes.BarraArriba barraArriba1;
-    private javax.swing.JLabel flechaPaAbajo;
-    private javax.swing.JLabel iconBuscar;
+    private javax.swing.JPanel fondo;
+    private javax.swing.JLabel iconConfig;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblInicio;
-    private javax.swing.JLabel lblMisActividades;
-    private javax.swing.JLabel lblNovedades;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
     private javax.swing.JLabel lblTigre;
+    private javax.swing.JLabel modoNigth;
+    private javax.swing.JPanel panelActividades;
+    private javax.swing.JPanel panelActividades1;
+    private javax.swing.JPanel panelAjustes;
+    private javax.swing.JPanel panelCarrusel;
+    private javax.swing.JLabel salir;
+    private javax.swing.JLabel tigerGrande;
     // End of variables declaration//GEN-END:variables
 }

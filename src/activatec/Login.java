@@ -96,7 +96,7 @@ public class Login extends javax.swing.JFrame {
 
                 dispose();  
 
-                Inicio1 inicioFrame = new Inicio1();  
+                Inicio inicioFrame = new Inicio();  
                 inicioFrame.setVisible(true);  
 
             } else {
