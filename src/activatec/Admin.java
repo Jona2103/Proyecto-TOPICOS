@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -92,53 +93,81 @@ public class Admin extends javax.swing.JFrame {
         }
         }
          });
+        
+         pnlCrearGrupo.setVisible(false);
+                pnlAdd.setVisible(false);
+                pnlGrupos.setVisible(false);
+        lblCrearGrup.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                pnlCrearGrupo.setVisible(true);
+                pnlAdd.setVisible(false);
+                pnlGrupos.setVisible(false);
+            }
 
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+        
+        lblAddAct.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                pnlCrearGrupo.setVisible(false);
+                pnlAdd.setVisible(true);
+                pnlGrupos.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+        
+        lblVerGrupo.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                pnlGrupos.setVisible(true);
+                pnlAdd.setVisible(false);
+                pnlCrearGrupo.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+        
+        
+        
+        
+        
         cargarActividades();
                barraArriba2.setParentFrame(this);
         btnAgregaract1.addActionListener(new Interna());
-        CrearGrupo.setVisible(false);
-        btnGrupo.addActionListener(
-        new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                insertarGrupo();
-            }
-        
-        }
-        );
-        Añadir1.setVisible(false);
-        CrearGrupo1.setVisible(false);
-        Grupos.setVisible(false);
-        Crear1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // Cambiar la visibilidad del panel "CrearGrupo" cuando se haga clic en el JLabel "Crear"
-                CrearGrupo1.setVisible(true);  // Mostrar el panel CrearGrupo
-                Añadir1.setVisible(false);     // Ocultar el panel Añadir
-                Grupos.setVisible(false);
-            }
-        });
 
-Agregar1.addMouseListener(new MouseAdapter() {
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // Cambiar la visibilidad del panel "Añadir" cuando se haga clic en el JLabel "Agregar"
-        Añadir1.setVisible(true);
-       // Mostrar el panel Añadir
-        CrearGrupo1.setVisible(false); // Ocultar el panel CrearGrupo
-        Grupos.setVisible(false);
-    }
-});
-
-lblVerGrupo.addMouseListener(new MouseAdapter() {
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // Cambiar la visibilidad del panel "CrearGrupo" cuando se haga clic en el JLabel "Crear"
-        Grupos.setVisible(true);  // Mostrar el panel ver grupo
-        Añadir1.setVisible(false);     // Ocultar el panel Añadir
-        CrearGrupo1.setVisible(false);
-    }
-});
     }
     
     public void borrarActividad(String Nombre) {
@@ -416,7 +445,19 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         jLabel18 = new javax.swing.JLabel();
         barraArriba2 = new Componentes.BarraArriba();
         contenido = new javax.swing.JPanel();
-        Añadir1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        lblTigre1 = new javax.swing.JLabel();
+        flechaPaAbajo1 = new javax.swing.JLabel();
+        lblCrearGrup = new javax.swing.JLabel();
+        lblAddAct = new javax.swing.JLabel();
+        lblVerGrupo = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        in = new javax.swing.JPanel();
+        pnlGrupos = new javax.swing.JPanel();
+        btnBorrarAct = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAct = new javax.swing.JTable();
+        pnlAdd = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -425,14 +466,7 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         CmbCreditos1 = new javax.swing.JComboBox<>();
         btnAgregaract1 = new javax.swing.JButton();
         btnCancelarGru = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        lblTigre1 = new javax.swing.JLabel();
-        flechaPaAbajo1 = new javax.swing.JLabel();
-        Crear1 = new javax.swing.JLabel();
-        Agregar1 = new javax.swing.JLabel();
-        lblVerGrupo = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        CrearGrupo1 = new javax.swing.JPanel();
+        pnlCrearGrupo = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -445,10 +479,6 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         txtCapacidad1 = new javax.swing.JTextField();
         btnGrupo1 = new javax.swing.JButton();
         btnCancelarAct = new javax.swing.JButton();
-        Grupos = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAct = new javax.swing.JTable();
-        btnBorrarAct = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel10.setText("Bienvenido Administrativo");
@@ -684,51 +714,17 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setLayout(null);
 
-        Añadir1.setBackground(new java.awt.Color(255, 255, 255));
-        Añadir1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
-        Añadir1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel20.setText("Nombre Actividad ");
-        Añadir1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 47, -1, -1));
-
-        jLabel21.setText("Descripcion ");
-        Añadir1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 93, 80, -1));
-
-        jLabel22.setText("Tipo de Credito ");
-        Añadir1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 140, 92, -1));
-
-        txtNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Añadir1.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 131, -1));
-
-        TxtDescripcion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Añadir1.add(TxtDescripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 130, -1));
-
-        CmbCreditos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        CmbCreditos1.setBorder(null);
-        Añadir1.add(CmbCreditos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 107, -1));
-
-        btnAgregaract1.setText("Agregar");
-        btnAgregaract1.setBorder(null);
-        Añadir1.add(btnAgregaract1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 80, -1));
-
-        btnCancelarGru.setText("Cancelar");
-        btnCancelarGru.setBorder(null);
-        Añadir1.add(btnCancelarGru, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 60, -1));
-
-        contenido.add(Añadir1);
-        Añadir1.setBounds(410, 170, 430, 340);
-
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTigre1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tigreExtraescCy.png"))); // NOI18N
 
         flechaPaAbajo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flechaPaAbajo.png"))); // NOI18N
 
-        Crear1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Crear1.setText("Crear grupo");
+        lblCrearGrup.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCrearGrup.setText("Crear grupo");
 
-        Agregar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Agregar1.setText("Agregar una Actividades");
+        lblAddAct.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblAddAct.setText("Agregar una Actividades");
 
         lblVerGrupo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblVerGrupo.setText("Ver Grupo");
@@ -744,12 +740,12 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(flechaPaAbajo1)
                 .addGap(76, 76, 76)
-                .addComponent(Crear1)
+                .addComponent(lblCrearGrup)
                 .addGap(35, 35, 35)
-                .addComponent(Agregar1)
+                .addComponent(lblAddAct)
                 .addGap(61, 61, 61)
                 .addComponent(lblVerGrupo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addGap(49, 49, 49))
         );
@@ -763,8 +759,8 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
                             .addComponent(lblTigre1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Crear1)
-                                    .addComponent(Agregar1)
+                                    .addComponent(lblCrearGrup)
+                                    .addComponent(lblAddAct)
                                     .addComponent(lblVerGrupo))
                                 .addGap(34, 34, 34))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -778,59 +774,17 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         );
 
         contenido.add(jPanel3);
-        jPanel3.setBounds(0, 0, 1303, 106);
+        jPanel3.setBounds(0, 0, 1072, 120);
 
-        CrearGrupo1.setBackground(new java.awt.Color(255, 255, 255));
-        CrearGrupo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
-        CrearGrupo1.setToolTipText("");
-        CrearGrupo1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        in.setBackground(new java.awt.Color(255, 255, 255));
+        in.setLayout(null);
 
-        jLabel13.setText("Horario");
-        CrearGrupo1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 23, -1, -1));
+        pnlGrupos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlGrupos.setLayout(null);
 
-        jLabel14.setText("Actividad");
-        CrearGrupo1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 63, 93, -1));
-
-        jLabel15.setText("Intructor");
-        CrearGrupo1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 103, 75, -1));
-
-        jLabel16.setText("Instalacion");
-        CrearGrupo1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 179, 75, -1));
-
-        jLabel17.setText("Capacidad");
-        CrearGrupo1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 141, -1, -1));
-
-        cmbHorario1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "08hrs-10hrs", "17hrs-19hrs", "19hrs-21hrs" }));
-        cmbHorario1.setBorder(null);
-        CrearGrupo1.add(cmbHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 20, -1, -1));
-
-        cmbActividad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbActividad1.setBorder(null);
-        CrearGrupo1.add(cmbActividad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 60, -1, -1));
-
-        cmbInstructor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbInstructor1.setBorder(null);
-        CrearGrupo1.add(cmbInstructor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 100, -1, -1));
-
-        cmbInstalacion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
-        cmbInstalacion1.setBorder(null);
-        CrearGrupo1.add(cmbInstalacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 176, -1, -1));
-
-        txtCapacidad1.setBorder(null);
-        CrearGrupo1.add(txtCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 140, 90, -1));
-
-        btnGrupo1.setText("Agregar");
-        btnGrupo1.setBorder(null);
-        CrearGrupo1.add(btnGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 60, -1));
-
-        btnCancelarAct.setText("Cancelar");
-        btnCancelarAct.setBorder(null);
-        CrearGrupo1.add(btnCancelarAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 60, -1));
-
-        contenido.add(CrearGrupo1);
-        CrearGrupo1.setBounds(-30, 170, 430, 340);
-
-        Grupos.setBackground(new java.awt.Color(255, 255, 255));
+        btnBorrarAct.setText("Borrar");
+        pnlGrupos.add(btnBorrarAct);
+        btnBorrarAct.setBounds(-31776, -32300, 75, 23);
 
         tblAct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -842,36 +796,120 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
         ));
         jScrollPane1.setViewportView(tblAct);
 
-        btnBorrarAct.setText("Borrar");
+        pnlGrupos.add(jScrollPane1);
+        jScrollPane1.setBounds(850, 170, 381, 244);
 
-        javax.swing.GroupLayout GruposLayout = new javax.swing.GroupLayout(Grupos);
-        Grupos.setLayout(GruposLayout);
-        GruposLayout.setHorizontalGroup(
-            GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GruposLayout.createSequentialGroup()
-                .addGroup(GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GruposLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(GruposLayout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(btnBorrarAct)))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-        GruposLayout.setVerticalGroup(
-            GruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GruposLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBorrarAct)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
+        pnlAdd.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
+        pnlAdd.setLayout(null);
 
-        contenido.add(Grupos);
-        Grupos.setBounds(860, 170, 450, 340);
+        jLabel20.setText("Nombre Actividad ");
+        pnlAdd.add(jLabel20);
+        jLabel20.setBounds(0, 0, 0, 0);
 
-        fondo.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1370, 740));
+        jLabel21.setText("Descripcion ");
+        pnlAdd.add(jLabel21);
+        jLabel21.setBounds(0, 0, 0, 0);
+
+        jLabel22.setText("Tipo de Credito ");
+        pnlAdd.add(jLabel22);
+        jLabel22.setBounds(0, 0, 0, 0);
+
+        txtNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlAdd.add(txtNombre1);
+        txtNombre1.setBounds(0, 0, 0, 0);
+
+        TxtDescripcion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlAdd.add(TxtDescripcion1);
+        TxtDescripcion1.setBounds(0, 0, 0, 0);
+
+        CmbCreditos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        CmbCreditos1.setBorder(null);
+        pnlAdd.add(CmbCreditos1);
+        CmbCreditos1.setBounds(0, 0, 0, 0);
+
+        btnAgregaract1.setText("Agregar");
+        btnAgregaract1.setBorder(null);
+        pnlAdd.add(btnAgregaract1);
+        btnAgregaract1.setBounds(0, 0, 0, 0);
+
+        btnCancelarGru.setText("Cancelar");
+        btnCancelarGru.setBorder(null);
+        pnlAdd.add(btnCancelarGru);
+        btnCancelarGru.setBounds(0, 0, 0, 0);
+
+        pnlGrupos.add(pnlAdd);
+        pnlAdd.setBounds(30, -100, 430, 340);
+
+        pnlCrearGrupo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCrearGrupo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, null));
+        pnlCrearGrupo.setToolTipText("");
+        pnlCrearGrupo.setLayout(null);
+
+        jLabel13.setText("Horario");
+        pnlCrearGrupo.add(jLabel13);
+        jLabel13.setBounds(170, 23, 41, 16);
+
+        jLabel14.setText("Actividad");
+        pnlCrearGrupo.add(jLabel14);
+        jLabel14.setBounds(170, 63, 93, 16);
+
+        jLabel15.setText("Intructor");
+        pnlCrearGrupo.add(jLabel15);
+        jLabel15.setBounds(170, 103, 75, 16);
+
+        jLabel16.setText("Instalacion");
+        pnlCrearGrupo.add(jLabel16);
+        jLabel16.setBounds(170, 179, 75, 16);
+
+        jLabel17.setText("Capacidad");
+        pnlCrearGrupo.add(jLabel17);
+        jLabel17.setBounds(170, 141, 57, 16);
+
+        cmbHorario1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "08hrs-10hrs", "17hrs-19hrs", "19hrs-21hrs" }));
+        cmbHorario1.setBorder(null);
+        pnlCrearGrupo.add(cmbHorario1);
+        cmbHorario1.setBounds(269, 20, 93, 20);
+
+        cmbActividad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbActividad1.setBorder(null);
+        pnlCrearGrupo.add(cmbActividad1);
+        cmbActividad1.setBounds(269, 60, 89, 20);
+
+        cmbInstructor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbInstructor1.setBorder(null);
+        pnlCrearGrupo.add(cmbInstructor1);
+        cmbInstructor1.setBounds(269, 100, 89, 20);
+
+        cmbInstalacion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        cmbInstalacion1.setBorder(null);
+        pnlCrearGrupo.add(cmbInstalacion1);
+        cmbInstalacion1.setBounds(269, 176, 89, 20);
+
+        txtCapacidad1.setBorder(null);
+        pnlCrearGrupo.add(txtCapacidad1);
+        txtCapacidad1.setBounds(269, 140, 90, 16);
+
+        btnGrupo1.setText("Agregar");
+        btnGrupo1.setBorder(null);
+        pnlCrearGrupo.add(btnGrupo1);
+        btnGrupo1.setBounds(300, 210, 60, 16);
+
+        btnCancelarAct.setText("Cancelar");
+        btnCancelarAct.setBorder(null);
+        pnlCrearGrupo.add(btnCancelarAct);
+        btnCancelarAct.setBounds(170, 210, 60, 16);
+
+        pnlGrupos.add(pnlCrearGrupo);
+        pnlCrearGrupo.setBounds(30, -130, 430, 340);
+
+        in.add(pnlGrupos);
+        pnlGrupos.setBounds(10, 180, 460, 340);
+
+        contenido.add(in);
+        in.setBounds(370, 140, 510, 470);
+
+        fondo.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1380, 740));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -926,16 +964,11 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Agregar;
-    private javax.swing.JLabel Agregar1;
     private javax.swing.JPanel Añadir;
-    private javax.swing.JPanel Añadir1;
     private javax.swing.JComboBox<String> CmbCreditos;
     private javax.swing.JComboBox<String> CmbCreditos1;
     private javax.swing.JLabel Crear;
-    private javax.swing.JLabel Crear1;
     private javax.swing.JPanel CrearGrupo;
-    private javax.swing.JPanel CrearGrupo1;
-    private javax.swing.JPanel Grupos;
     private javax.swing.JTextField TxtDescripcion;
     private javax.swing.JTextField TxtDescripcion1;
     private Componentes.BarraArriba barraArriba1;
@@ -961,6 +994,7 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
     private javax.swing.JLabel flechaPaAbajo1;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel iconBuscar;
+    private javax.swing.JPanel in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -985,10 +1019,15 @@ lblVerGrupo.addMouseListener(new MouseAdapter() {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAddAct;
+    private javax.swing.JLabel lblCrearGrup;
     private javax.swing.JLabel lblNovedades;
     private javax.swing.JLabel lblTigre;
     private javax.swing.JLabel lblTigre1;
     private javax.swing.JLabel lblVerGrupo;
+    private javax.swing.JPanel pnlAdd;
+    private javax.swing.JPanel pnlCrearGrupo;
+    private javax.swing.JPanel pnlGrupos;
     private javax.swing.JTable tblAct;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtCapacidad1;
